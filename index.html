@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welkom | Annemans Automotive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="hero">
+        <video autoplay muted playsinline id="hero-video" class="desktop-video">
+            <source src="video/hero_background.mkv" type="video/mp4">
+            Je browser ondersteunt geen video weergave.
+        </video>
+        <video autoplay muted playsinline id="hero-video-mobile" class="mobile-video">
+            <source src="video/hero_background_mobile.mp4" type="video/mp4">
+            Je browser ondersteunt geen video weergave.
+        </video>
+        <div class="content">
+            <h1 class="slogan">Jouw auto. Ons vakmanschap</h1>
+            <button class="cta-button">Offerte aanvragen</button>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-content">
+            <a href="#" class="nav-link active"><img src="image/Home_btn.png" alt="Home" class="nav-icon">Home</a>
+            <a href="#" class="nav-link"><img src="image/Diensten_btn.png" alt="Diensten" class="nav-icon">Diensten</a>
+            <a href="#" class="nav-link">Portfolio</a>
+            <a href="#" class="nav-link">Contact</a>
+        </div>
+    </nav>
+    <section class="services">
+        <div class="service-grid">
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                <span>Premium<br>Detailing</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Lak<br>Bescherming</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-tint"></i></div>
+                <span>Keramische<br>Coating</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-car"></i></div>
+                <span>Showroom<br>Afwerking</span>
+            </div>
+        </div>
+
+        <div class="work-section">
+            <h2>Ons Werk</h2>
+            <div class="work-container">
+                <div class="portfolio-side">
+                    <div class="portfolio-grid">
+                        <a href="#" class="portfolio-item">
+                            <div class="car-image" style="background-image: url('img/audi.jpg');"></div>
+                            <div class="car-info">
+                                <h3>Audi RS7</h3>
+                                <p>Lak Bescherming</p>
+                            </div>
+                        </a>
+                        <a href="#" class="portfolio-item">
+                            <div class="car-image" style="background-image: url('img/bmw.jpg');"></div>
+                            <div class="car-info">
+                                <h3>BMW M4</h3>
+                                <p>Keramische Coating</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slider-side">
+                    <div class="before-after-slider">
+                        <div class="comparison-slider">
+                            <img class="before-image" src="img/car-before.jpg" alt="Voor behandeling">
+                            <div class="slider-handle"></div>
+                            <div class="after-container">
+                                <img class="after-image" src="img/car-after.jpg" alt="Na behandeling">
+                            </div>
+                        </div>
+                        <div class="slider-labels">
+                            <span class="before-label">Voor</span>
+                            <span class="after-label">Na</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial">
+            <blockquote>
+                <p>"Geweldige service, mijn auto ziet eruit als nieuw!<br>Beter kan niet."</p>
+                <cite>- Jeroen V.</cite>
+            </blockquote>
+        </div>
+
+        <div class="pricing">
+            <h2>Tarieven</h2>
+            <div class="pricing-grid">
+                <div class="price-option">
+                    <div class="car-icon basic"></div>
+                    <span>Basis</span>
+                </div>
+                <div class="price-option">
+                    <div class="car-icon advanced"></div>
+                    <span>Geavanceerd</span>
+                </div>
+                <div class="price-option">
+                    <div class="car-icon ultra"></div>
+                    <span>Ultra<br>Keramisch</span>
+                </div>
+            </div>
+            <button class="view-packages">Bekijk pakketten</button>
+        </div>
+
+        <div class="transform-cta">
+            <h2>Klaar om je Auto te Transformeren?</h2>
+            <button class="cta-button">Offerte aanvragen</button>
+        </div>
+    </section>
+    <script>
+        const desktopVideo = document.getElementById('hero-video');
+        const mobileVideo = document.getElementById('hero-video-mobile');
+
+        desktopVideo.addEventListener('ended', function() {
+            this.currentTime = this.duration;
+        });
+
+        mobileVideo.addEventListener('ended', function() {
+            this.currentTime = this.duration;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
