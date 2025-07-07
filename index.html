@@ -29,12 +29,14 @@
 
     <nav class="main-nav">
         <div class="nav-content">
-            <a href="#" class="nav-link active"><img src="image/Home_btn.png" alt="Home" class="nav-icon">Home</a>
-            <a href="#" class="nav-link"><img src="image/Diensten_btn.png" alt="Diensten" class="nav-icon">Diensten</a>
-            <a href="#" class="nav-link">Portfolio</a>
-            <a href="#" class="nav-link">Contact</a>
+            <a href="#home" class="nav-link active" data-page="home-page"><img src="image/Home_btn.png" alt="Home" class="nav-icon">Home</a>
+            <a href="#diensten" class="nav-link" data-page="diensten-page"><img src="image/Diensten_btn.png" alt="Diensten" class="nav-icon">Diensten</a>
+            <a href="#over-ons" class="nav-link" data-page="over-ons-page"><img src="image/About_us_btn.png" alt="Over ons" class="nav-icon">Over ons</a>
+            <a href="#contact" class="nav-link" data-page="contact-page"><img src="image/Contact.png" alt="Contact" class="nav-icon">Contact</a>
         </div>
     </nav>
+    <div class="page-container">
+        <div class="page home active" id="home-page">
     <section class="services">
         <div class="service-grid">
             <div class="service-item">
@@ -61,14 +63,14 @@
                 <div class="portfolio-side">
                     <div class="portfolio-grid">
                         <a href="#" class="portfolio-item">
-                            <div class="car-image" style="background-image: url('img/audi.jpg');"></div>
+                            <div class="car-image" style="background-image: url('image/Mansory-Audi-RS7-2.jpg');"></div>
                             <div class="car-info">
                                 <h3>Audi RS7</h3>
                                 <p>Lak Bescherming</p>
                             </div>
                         </a>
                         <a href="#" class="portfolio-item">
-                            <div class="car-image" style="background-image: url('img/bmw.jpg');"></div>
+                            <div class="car-image" style="background-image: url('image/9261417.jpg');"></div>
                             <div class="car-info">
                                 <h3>BMW M4</h3>
                                 <p>Keramische Coating</p>
@@ -105,15 +107,15 @@
             <h2>Tarieven</h2>
             <div class="pricing-grid">
                 <div class="price-option">
-                    <div class="car-icon basic"></div>
+                    <img src="image/Pricing_basic_icon.png" alt="Basic Package" class="pricing-icon">
                     <span>Basis</span>
                 </div>
                 <div class="price-option">
-                    <div class="car-icon advanced"></div>
+                    <img src="image/Pricing_advanced_icon.png" alt="Advanced Package" class="pricing-icon">
                     <span>Geavanceerd</span>
                 </div>
                 <div class="price-option">
-                    <div class="car-icon ultra"></div>
+                    <img src="image/Pricing_ultra_icon.png" alt="Ultra Ceramic Package" class="pricing-icon">
                     <span>Ultra<br>Keramisch</span>
                 </div>
             </div>
@@ -138,5 +140,251 @@
         });
     </script>
     <script src="script.js"></script>
+    <script src="lightbox.js"></script>
+    <script src="navigation.js"></script>
+    <script src="contact.js"></script>
+        </div>
+        <div class="page diensten" id="diensten-page">
+            <section class="diensten-content">
+                <h2>Onze Pakketten</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <img src="image/Pricing_basic_icon.png" alt="Basic Package" class="package-icon">
+                        <h3>Basis Pakket</h3>
+                        <ul class="package-features">
+                            <li>Exterieur reiniging</li>
+                            <li>Interieur reiniging</li>
+                            <li>Velgen reiniging</li>
+                            <li>Basis wax behandeling</li>
+                        </ul>
+                    </div>
+                    <div class="package-card">
+                        <img src="image/Pricing_advanced_icon.png" alt="Advanced Package" class="package-icon">
+                        <h3>Geavanceerd Pakket</h3>
+                        <ul class="package-features">
+                            <li>Alles van het Basis pakket</li>
+                            <li>Clay bar behandeling</li>
+                            <li>Machine polijsten</li>
+                            <li>Premium wax behandeling</li>
+                            <li>Glas behandeling</li>
+                        </ul>
+                    </div>
+                    <div class="package-card">
+                        <img src="image/Pricing_ultra_icon.png" alt="Ultra Ceramic Package" class="package-icon">
+                        <h3>Ultra Keramisch Pakket</h3>
+                        <ul class="package-features">
+                            <li>Alles van het Geavanceerd pakket</li>
+                            <li>Keramische coating</li>
+                            <li>Paint protection film</li>
+                            <li>2 jaar garantie</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Gedetailleerde Diensten</h2>
+                <div class="services-detail">
+                    <div class="service-detail-item">
+                        <h3>Exterieur Reiniging</h3>
+                        <p>Een grondige reiniging van de buitenkant van uw auto met speciale shampoos en microvezel materialen. We verwijderen vuil, teer, en andere verontreinigingen zonder de lak te beschadigen.</p>
+                    </div>
+                    
+                    <div class="service-detail-item">
+                        <h3>Interieur Reiniging</h3>
+                        <p>Complete reiniging van het interieur, inclusief stofzuigen, dashboard reiniging, ramen, stoelen en matten. We gebruiken specifieke producten voor elk materiaal voor het beste resultaat.</p>
+                    </div>
+
+                    <div class="service-detail-item">
+                        <h3>Clay Bar Behandeling</h3>
+                        <p>Met een speciale klei verwijderen we microscopische verontreinigingen uit de lak, wat resulteert in een volledig gladde ondergrond voor verdere behandelingen.</p>
+                    </div>
+
+                    <div class="service-detail-item">
+                        <h3>Machine Polijsten</h3>
+                        <p>Professioneel polijsten met machine om krasjes, swirls en oxidatie te verwijderen. Dit geeft de lak zijn oorspronkelijke glans terug.</p>
+                    </div>
+
+                    <div class="service-detail-item">
+                        <h3>Keramische Coating</h3>
+                        <p>Een hoogwaardige beschermlaag die jaren bescherming biedt tegen UV-straling, chemicaliën, krassen en oxidatie. Maakt het onderhoud eenvoudiger en geeft een diepe, blijvende glans.</p>
+                    </div>
+
+                    <div class="service-detail-item">
+                        <h3>Paint Protection Film</h3>
+                        <p>Een transparante beschermfolie die de lak beschermt tegen steenslag, krassen en andere beschadigingen. Perfect voor hoogbelaste delen zoals de voorbumper en motorkap.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="page over-ons" id="over-ons-page">
+            <section class="over-ons-content">
+                <div class="about-hero">
+                    <h2>Over Annemans Automotive</h2>
+                    <p class="tagline">Passie voor perfectie in autodetailing</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card mission">
+                        <h3>Onze Missie</h3>
+                        <p>Bij Annemans Automotive streven we ernaar om elke auto te transformeren naar zijn maximale potentieel. Met precisie, vakmanschap en de nieuwste technieken zorgen we ervoor dat uw auto er niet alleen geweldig uitziet, maar ook optimaal beschermd is.</p>
+                    </div>
+
+                    <div class="about-card story">
+                        <h3>Ons Verhaal</h3>
+                        <p>Wat begon als een passie voor auto's, groeide uit tot een toegewijd bedrijf in autodetailing. Met jarenlange ervaring en continue bijscholing in de nieuwste technieken, zijn we uitgegroeid tot een toonaangevende specialist in de regio.</p>
+                    </div>
+
+                    <div class="about-card expertise">
+                        <h3>Onze Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Gecertificeerde autodetailing specialisten</li>
+                            <li>Gebruik van premium producten en materialen</li>
+                            <li>Ervaring met exclusieve en luxe voertuigen</li>
+                            <li>Continue training in de nieuwste technieken</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card values">
+                        <h3>Onze Waarden</h3>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <span class="value-icon">🎯</span>
+                                <h4>Precisie</h4>
+                                <p>Oog voor elk detail</p>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-icon">🤝</span>
+                                <h4>Kwaliteit</h4>
+                                <p>Alleen het beste is goed genoeg</p>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-icon">💪</span>
+                                <h4>Toewijding</h4>
+                                <p>100% inzet voor elk project</p>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-icon">🔄</span>
+                                <h4>Innovatie</h4>
+                                <p>Altijd up-to-date met de nieuwste technieken</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-section">
+                    <h2>Onze Resultaten</h2>
+                    <p class="section-intro">Ontdek enkele van onze meest indrukwekkende transformaties</p>
+                    <div class="portfolio-gallery">
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('image/Mansory-Audi-RS7-2.jpg');"></div>
+                            <div class="gallery-overlay">
+                                <h4>Audi RS7</h4>
+                                <p>Volledige detailing behandeling</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('image/9261417.jpg');"></div>
+                            <div class="gallery-overlay">
+                                <h4>BMW M4</h4>
+                                <p>Keramische coating</p>
+                            </div>
+                        </div>
+                        <!-- Meer foto's kunnen hier worden toegevoegd -->
+                    </div>
+                </div>
+
+                <div class="about-cta">
+                    <h3>Klaar om uw auto te transformeren?</h3>
+                    <p>Ontdek wat wij voor uw auto kunnen betekenen</p>
+                    <a href="#contact" class="cta-button">Neem Contact Op</a>
+                </div>
+            </section>
+        </div>
+        <div class="page contact" id="contact-page">
+            <section class="contact-content">
+                <h2>Contact</h2>
+                <p class="contact-intro">Heeft u vragen of wilt u een afspraak maken? Neem gerust contact met ons op.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <h3>Stuur ons een bericht</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Naam</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefoonnummer</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Onderwerp</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Kies een onderwerp</option>
+                                    <option value="afspraak">Afspraak maken</option>
+                                    <option value="offerte">Offerte aanvragen</option>
+                                    <option value="informatie">Informatie</option>
+                                    <option value="anders">Anders</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Bericht</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Verstuur Bericht</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="info-block">
+                            <h3>Contact Informatie</h3>
+                            <div class="info-item">
+                                <i class="contact-icon">📞</i>
+                                <div class="info-text">
+                                    <h4>Telefoon</h4>
+                                    <p>+31 (0)6 12345678</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="contact-icon">✉️</i>
+                                <div class="info-text">
+                                    <h4>E-mail</h4>
+                                    <p>info@annemans-automotive.nl</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="contact-icon">📍</i>
+                                <div class="info-text">
+                                    <h4>Adres</h4>
+                                    <p>Voorbeeldstraat 123<br>1234 AB Amsterdam</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="contact-icon">🕒</i>
+                                <div class="info-text">
+                                    <h4>Openingstijden</h4>
+                                    <p>Maandag - Vrijdag: 9:00 - 18:00<br>Zaterdag: Op afspraak<br>Zondag: Gesloten</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.5382656571837!2d4.8910208!3d52.3702157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDIyJzEyLjgiTiA0wrA1Myc0Mi4xIkU!5e0!3m2!1sen!2snl!4v1627896255624!5m2!1sen!2snl"
+                                width="100%"
+                                height="300"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </body>
 </html>
