@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welkom | Annemans Automotive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div class="hero">
         <video autoplay muted playsinline id="hero-video" class="desktop-video">
-            <source src="video/hero_background.mkv" type="video/mp4">
-            Je browser ondersteunt geen video weergave.
+            <source src="video/hero_background.mkv" type="video/webm">
+            <source src="video/hero_background.mp4" type="video/mp4">
         </video>
         <video autoplay muted playsinline id="hero-video-mobile" class="mobile-video">
             <source src="video/hero_background_mobile.mp4" type="video/mp4">
-            Je browser ondersteunt geen video weergave.
         </video>
         <div class="content">
             <h1 class="slogan">Jouw auto. Ons vakmanschap</h1>
@@ -27,35 +27,36 @@
         </div>
     </div>
 
-    <nav class="main-nav">
+    <div class="main-nav">
         <div class="nav-content">
-            <a href="#home" class="nav-link active" data-page="home-page"><img src="image/Home_btn.png" alt="Home" class="nav-icon">Home</a>
-            <a href="#diensten" class="nav-link" data-page="diensten-page"><img src="image/Diensten_btn.png" alt="Diensten" class="nav-icon">Diensten</a>
-            <a href="#over-ons" class="nav-link" data-page="over-ons-page"><img src="image/About_us_btn.png" alt="Over ons" class="nav-icon">Over ons</a>
-            <a href="#contact" class="nav-link" data-page="contact-page"><img src="image/Contact.png" alt="Contact" class="nav-icon">Contact</a>
+            <a href="#home" data-page="home-page" class="nav-link active"><img src="image/Home_btn.png" alt="Home" class="nav-icon">Home</a>
+            <a href="#diensten" data-page="diensten-page" class="nav-link"><img src="image/Diensten_btn.png" alt="Diensten" class="nav-icon">Diensten</a>
+            <a href="#over-ons" data-page="over-ons-page" class="nav-link"><img src="image/About_us_btn.png" alt="Over ons" class="nav-icon">Over ons</a>
+            <a href="#contact" data-page="contact-page" class="nav-link"><img src="image/Contact.png" alt="Contact" class="nav-icon">Contact</a>
         </div>
-    </nav>
-    <div class="page-container">
+    </div>
+
+    <main class="page-container">
         <div class="page home active" id="home-page">
-    <section class="services">
-        <div class="service-grid">
-            <div class="service-item">
-                <div class="service-icon"><i class="fas fa-spray-can"></i></div>
-                <span>Premium<br>Detailing</span>
-            </div>
-            <div class="service-item">
-                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
-                <span>Lak<br>Bescherming</span>
-            </div>
-            <div class="service-item">
-                <div class="service-icon"><i class="fas fa-tint"></i></div>
-                <span>Keramische<br>Coating</span>
-            </div>
-            <div class="service-item">
-                <div class="service-icon"><i class="fas fa-car"></i></div>
-                <span>Showroom<br>Afwerking</span>
-            </div>
-        </div>
+            <section class="services">
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                        <span>Premium<br>Detailing</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span>Lak<br>Bescherming</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-tint"></i></div>
+                        <span>Keramische<br>Coating</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                        <span>Showroom<br>Afwerking</span>
+                    </div>
+                </div>
 
         <div class="work-section">
             <h2>Ons Werk</h2>
@@ -140,9 +141,10 @@
         });
     </script>
     <script src="script.js"></script>
-    <script src="lightbox.js"></script>
     <script src="navigation.js"></script>
+    <script src="lightbox.js"></script>
     <script src="contact.js"></script>
+    <script src="video.js"></script>
         </div>
         <div class="page diensten" id="diensten-page">
             <section class="diensten-content">
@@ -182,33 +184,242 @@
                 </div>
 
                 <h2>Gedetailleerde Diensten</h2>
-                <div class="services-detail">
-                    <div class="service-detail-item">
+                <div class="detailed-services">
+                    <div class="service-detail">
+                        <h3>Machinaal Waxen</h3>
+                        <div class="service-highlights">
+                            <span>Snelle lakverzorging</span>
+                            <span>Verhoogde glans</span>
+                            <span>Basisbescherming</span>
+                        </div>
+                        <p>Bij Annemans Automotive bieden we een efficiënte machinale waxbehandeling aan voor wie zijn voertuig een glanzende afwerking en tijdelijke bescherming wil geven. Ideaal als onderhoudsbeurt of als extra stap na een handwas.</p>
+                        
+                        <div class="service-benefits">
+                            <h4>Voordelen</h4>
+                            <ul>
+                                <li>Directe glansverbetering van de lak</li>
+                                <li>Bescherming tegen UV-straling, vuil en water</li>
+                                <li>Verdiept de kleur en geeft een glad oppervlak</li>
+                                <li>Maakt toekomstige wasbeurten eenvoudiger</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-process">
+                            <h4>Behandelingsproces</h4>
+                            <ul>
+                                <li>Grondige handwas vooraf</li>
+                                <li>Machinale aanbrenging van kwalitatieve wax</li>
+                                <li>Vakkundig uitpoetsen voor egale, glanzende afwerking</li>
+                                <li>Geschikt voor alle laktinten</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-pricing">
+                            <h4>Prijsindicatie</h4>
+                            <div class="price">€75</div>
+                            <p>Tarief afhankelijk van voertuigtype en conditie van de lak<br>Combineerbaar met andere diensten zoals interieurreiniging of polijsten</p>
+                        </div>
+                    </div>
+
+                    <div class="service-detail">
+                        <h3>Keramische Coatings voor Auto's</h3>
+                        <div class="service-highlights">
+                            <span>Duurzame lakbescherming</span>
+                            <span>Professionele toepassing</span>
+                            <span>Minimale onderhoudsbehoefte</span>
+                        </div>
+                        <p>Bij Annemans Automotive brengen we hoogwaardige keramische coatings aan die zorgen voor langdurige bescherming van je voertuig. De coating vormt een harde, transparante laag over de lak en biedt uitstekende weerstand tegen invloeden van buitenaf.</p>
+                        
+                        <div class="service-benefits">
+                            <h4>Voordelen van Keramische Coating</h4>
+                            <ul>
+                                <li>Langdurige bescherming tot 5 jaar</li>
+                                <li>Water- en vuilafstotend oppervlak (hydrofoob effect)</li>
+                                <li>Bescherming tegen UV, chemicaliën en lichte krassen</li>
+                                <li>Versterkte glans en kleurverdieping</li>
+                                <li>Eenvoudiger schoon te maken en te onderhouden</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-process">
+                            <h4>Behandelingsproces</h4>
+                            <ul>
+                                <li>Volledige reiniging en decontaminatie van de lak</li>
+                                <li>Polijstbehandeling (voorafgaand, indien nodig)</li>
+                                <li>Ontvetting en voorbereiden van het oppervlak</li>
+                                <li>Nauwkeurige applicatie van de keramische coating</li>
+                                <li>Uitharding volgens de productspecificaties</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-pricing">
+                            <h4>Prijsindicatie</h4>
+                            <div class="price">Vanaf €800</div>
+                            <p>Afhankelijk van voertuigtype en lakconditie<br>Inclusief grondige voorbereiding en één-laags coating<br>Extra kosten mogelijk bij aanvullende polijststappen of grotere voertuigen</p>
+                        </div>
+
+                        <div class="service-recommendation">
+                            <h4>Aanbevolen voor</h4>
+                            <p>Nieuwe auto's, recent gepolijste lak of als duurzame bescherming na een uitgebreide detailing.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-detail">
+                        <h3>Polijsten – Herstel van Lak & Glans</h3>
+                        <p>Annemans Automotive biedt twee professionele polijstbehandelingen om de lak van je voertuig te herstellen en de uitstraling te verbeteren.</p>
+
+                        <div class="service-package">
+                            <h4>1. Touch-Up Polishing (Opfris Polijsten)</h4>
+                            <div class="price">Vanaf €200</div>
+                            <p class="price-note">Stationwagens +€50</p>
+                            <p>Snelle behandeling voor auto's in goede staat met lichte krasjes of doffe lak.</p>
+                            <h5>Inclusief:</h5>
+                            <ul>
+                                <li>Verwijdering van lichte krasjes en vlekken</li>
+                                <li>Herstel van glans en helderheid</li>
+                                <li>Geschikt voor periodiek onderhoud</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>2. Restoration Polishing (Restauratie Polijsten)</h4>
+                            <div class="price">Vanaf €300</div>
+                            <p>Diepgaande behandeling voor voertuigen met zwaardere lakschade, zoals oxidatie of diepe krassen.</p>
+                            <h5>Inclusief:</h5>
+                            <ul>
+                                <li>Herstel van diepe lakbeschadigingen</li>
+                                <li>Glansverbetering en bescherming</li>
+                                <li>Gladder oppervlak voor betere vuil- en waterafstoting</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-benefits">
+                            <h4>Voordelen van onze polijstservice</h4>
+                            <ul>
+                                <li>Herstel van originele glans en kleur</li>
+                                <li>Verwijdering van lakdefecten</li>
+                                <li>Duurzaam resultaat met professionele producten</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-detail">
+                        <h3>De Ultieme Auto Verzorging</h3>
+                        <div class="service-highlights">
+                            <span>Professionele kwaliteit</span>
+                            <span>Volledige aandacht voor interieur en exterieur</span>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>Interieur Deep Clean</h4>
+                            <div class="price">€180</div>
+                            <p class="price-note">Grote wagens +€15</p>
+                            <p>Grondige interieurreiniging inclusief stoomreiniging.</p>
+                            <h5>Inbegrepen</h5>
+                            <ul>
+                                <li>Reiniging dashboard, middenconsole, deurpanelen</li>
+                                <li>Lederreiniging + verzorging of stoffen zetelshampoo</li>
+                                <li>Tapijt & matten dieptereiniging</li>
+                                <li>Behandeling kunststofdelen</li>
+                                <li>Ramen streeploos reinigen</li>
+                                <li>Stoombehandeling interieur</li>
+                            </ul>
+                            <div class="service-option">
+                                <span class="option-label">Optie:</span> Dakhemel reinigen – €50
+                            </div>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>Premium Hand Wash</h4>
+                            <div class="price">€70</div>
+                            <p class="price-note">Grote wagens +€15</p>
+                            <p>Zorgvuldige, krasvrije handwas met lakbescherming.</p>
+                            <h5>Inbegrepen</h5>
+                            <ul>
+                                <li>Handwas + reiniging deurstijlen</li>
+                                <li>Velgen, banden & wielkasten reinigen</li>
+                                <li>Drogen met warme lucht & microvezeldoek</li>
+                                <li>HydrO2 Foam Wash & Coat (tot 3 maanden bescherming)</li>
+                                <li>Bandendressing</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>Premium Hand Wash + Interieurreiniging</h4>
+                            <div class="price">€125</div>
+                            <p class="price-note">Grote wagens +€15</p>
+                            <p>Combinatie van een volledige exterieurwas en een basisinterieurreiniging.</p>
+                            <h5>Inbegrepen</h5>
+                            <ul>
+                                <li>Volledige handwas + velgen/wielkasten</li>
+                                <li>Beschermende foamcoating + bandendressing</li>
+                                <li>Stofzuigen interieur</li>
+                                <li>Afstoffen + reinigen ramen/spiegels</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>Decontaminatie Handwash</h4>
+                            <div class="price">€90</div>
+                            <p>Grondige reiniging ter voorbereiding op polijsten of dieptereiniging.</p>
+                            <h5>Inbegrepen</h5>
+                            <ul>
+                                <li>Verwijdering van remstof, teer, oude waxlagen</li>
+                                <li>Aanbevolen vóór polijstbehandelingen</li>
+                                <li>Voorbereiding voor optimale lakverzorging</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-detail">
+                        <h3>Motorbehandelingen</h3>
+                        <p>Kies bij Annemans Automotive uit twee gerichte behandelingen om je motor grondig te reinigen én optisch te verbeteren.</p>
+
+                        <div class="service-package">
+                            <h4>1. Deep Clean Behandeling</h4>
+                            <div class="price">€100</div>
+                            <p class="price-note">Grotere motoren +€15</p>
+                            <p>Grondige reiniging van je motor voor een frisse en verzorgde uitstraling.</p>
+                            <h5>Inclusief</h5>
+                            <ul>
+                                <li>Reiniging van frame, velgen en motoronderdelen</li>
+                                <li>Verwijdering van olie, vet, roest en vervuiling</li>
+                                <li>Herstel van de oorspronkelijke uitstraling</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-package">
+                            <h4>2. Polijsten Motor</h4>
+                            <div class="price">Vanaf €200</div>
+                            <p class="price-note">Grotere motoren +€15</p>
+                            <p>Polijstbehandeling voor glansherstel en lakcorrectie.</p>
+                            <h5>Inclusief</h5>
+                            <ul>
+                                <li>Verwijdering van lichte krassen, dofheid en oxidatie</li>
+                                <li>Verbetering van lakglans en uitstraling</li>
+                                <li>Extra bescherming tegen weersinvloeden</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-note">
+                            <p>Prijsindicatie afhankelijk van de staat van de motor.<br>Advies nodig? Neem contact met ons op voor een beoordeling.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-detail">
                         <h3>Exterieur Reiniging</h3>
                         <p>Een grondige reiniging van de buitenkant van uw auto met speciale shampoos en microvezel materialen. We verwijderen vuil, teer, en andere verontreinigingen zonder de lak te beschadigen.</p>
                     </div>
-                    
-                    <div class="service-detail-item">
-                        <h3>Interieur Reiniging</h3>
-                        <p>Complete reiniging van het interieur, inclusief stofzuigen, dashboard reiniging, ramen, stoelen en matten. We gebruiken specifieke producten voor elk materiaal voor het beste resultaat.</p>
-                    </div>
 
-                    <div class="service-detail-item">
+                    <div class="service-detail">
                         <h3>Clay Bar Behandeling</h3>
                         <p>Met een speciale klei verwijderen we microscopische verontreinigingen uit de lak, wat resulteert in een volledig gladde ondergrond voor verdere behandelingen.</p>
                     </div>
-
-                    <div class="service-detail-item">
+                    <div class="service-detail">
                         <h3>Machine Polijsten</h3>
                         <p>Professioneel polijsten met machine om krasjes, swirls en oxidatie te verwijderen. Dit geeft de lak zijn oorspronkelijke glans terug.</p>
                     </div>
-
-                    <div class="service-detail-item">
-                        <h3>Keramische Coating</h3>
-                        <p>Een hoogwaardige beschermlaag die jaren bescherming biedt tegen UV-straling, chemicaliën, krassen en oxidatie. Maakt het onderhoud eenvoudiger en geeft een diepe, blijvende glans.</p>
-                    </div>
-
-                    <div class="service-detail-item">
+                    <div class="service-detail">
                         <h3>Paint Protection Film</h3>
                         <p>Een transparante beschermfolie die de lak beschermt tegen steenslag, krassen en andere beschadigingen. Perfect voor hoogbelaste delen zoals de voorbumper en motorkap.</p>
                     </div>
@@ -386,5 +597,6 @@
             </section>
         </div>
     </div>
+
 </body>
 </html>

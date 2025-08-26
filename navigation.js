@@ -1,54 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const pageOrder = ['home-page', 'diensten-page', 'over-ons-page', 'contact-page'];
     const navLinks = document.querySelectorAll('.nav-link');
-    let currentPage = document.querySelector('.page.active');
+    const pages = document.querySelectorAll('.page');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.main-nav');
 
-    function getPageDirection(currentId, targetId) {
-        const currentIndex = pageOrder.indexOf(currentId);
-        const targetIndex = pageOrder.indexOf(targetId);
-        return targetIndex > currentIndex ? 'right' : 'left';
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+
+    // Pagina wissel functie
+    function goToPage(pageId) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        pages.forEach(page => page.classList.remove('active'));
+
+        const targetLink = document.querySelector(`[data-page="${pageId}"]`);
+        const targetPage = document.getElementById(pageId);
+
+        if (targetLink && targetPage) {
+            targetLink.classList.add('active');
+            targetPage.classList.add('active');
+            window.scrollTo(0, 0);
+        }
     }
 
+    // Event listeners voor nav links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('data-page');
-            const targetPage = document.getElementById(targetId);
-            
-            if (currentPage === targetPage) return;
-            
-            const direction = getPageDirection(currentPage.id, targetId);
+            const targetPageId = this.getAttribute('data-page');
+            goToPage(targetPageId);
+        });
+    });
 
-            // Reset any existing classes
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active', 'slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right');
-            });
-            
-            // Update navigation
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
-
-            // Set initial positions
-            if (direction === 'right') {
-                targetPage.style.transform = 'translateX(100%)';
-            } else {
-                targetPage.style.transform = 'translateX(-100%)';
-            }
-            
-            // Force reflow
-            void targetPage.offsetWidth;
-
-            // Add transition classes
-            currentPage.classList.add(`slide-out-${direction}`);
-            targetPage.classList.add(`slide-in-${direction}`, 'active');
-            
-            // Cleanup after animation
-            setTimeout(() => {
-                currentPage.classList.remove(`slide-out-${direction}`);
-                currentPage.style.transform = '';
-                targetPage.style.transform = '';
-                currentPage = targetPage;
-            }, 300);
+    // Event listeners voor CTA buttons
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPage('diensten-page');
         });
     });
 });
