@@ -1,116 +1,219 @@
 <!DOCTYPE html>
 <html lang="nl" class="inner">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diensten | Annemans Automotive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Diensten_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <!-- Advanced Background Effects -->
+  <div class="floating-particles"></div>
+  <div class="geometric-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="diagonal-grid"></div>
+  <div class="noise-overlay"></div>
   
 <header class="site-header" role="banner">
   <div class="site-header__row">
     <a class="brand" href="index.html">
-      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
+      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=9" alt="Annemans Automotive" class="logo">
     </a>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="diensten.html">Diensten</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="work.html">Werk</a>
+      <a href="diensten.html" class="nav-link active">Diensten</a>
+      <a href="over-ons.html" class="nav-link">Over ons</a>
+      <a href="work.html" class="nav-link">Werk</a>
       <a class="btn btn-accent" href="contact.html">Boek nu</a>
     </nav>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
-  
-<section class="section">
-  <div class="container">
-    <span class="kicker">Diensten</span>
-    <h1>Onze pakketten</h1>
-    <p class="lead">Kies een pakket dat past bij uw wagen en wensen. Alle behandelingen met oog voor detail en duurzaamheid.</p>
-    <div class="grid grid-3" style="margin-top:1.25rem">
-      <div class="card">
-        <div class="card__body">
-          <img class="pricing-icon" src="image/Pricing_basic_icon.png" alt="Basis pakket">
-          <h3>Basis</h3><br>
-          <ul>
-            <li>Exterieur & interieur reiniging</li>
-            <li>Velgen reiniging</li>
-            <li>Basis wax</li>
-          </ul>
-          <a class="btn btn-accent" href="contact.html#boek" style="margin-top:.75rem;display:inline-block">Boek basis</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card__body">
-          <img class="pricing-icon" src="image/Pricing_advanced_icon.png" alt="Geavanceerd pakket">
-          <h3>Geavanceerd</h3><br>
-          <ul>
-            <li>Grondige lakreiniging</li>
-            <li>Interieur dieptereiniging</li>
-            <li>Beschermlaag</li>
-          </ul>
-          <a class="btn btn-accent" href="contact.html#boek" style="margin-top:.75rem;display:inline-block">Boek geavanceerd</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card__body">
-          <img class="pricing-icon" src="image/Pricing_ultra_icon.png" alt="Ultra Keramisch pakket">
-          <h3>Ultra Keramisch</h3><br>
-          <ul>
-            <li>Keramische coating</li>
-            <li>Paint protection film</li>
-            <li>2 jaar garantie</li>
-          </ul>
-          <a class="btn btn-accent" href="contact.html#boek" style="margin-top:.75rem;display:inline-block">Boek ultra</a>
-        </div>
+<main class="main-content">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <span class="kicker">Diensten</span>
+        <h1 class="hero-title">Onze pakketten</h1>
+        <p class="hero-description">Kies een pakket dat past bij uw wagen en wensen. Alle behandelingen met oog voor detail en duurzaamheid.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container">
-    <span class="kicker">Specials</span>
-    <h2>Gedetailleerde diensten</h2>
-    <div class="grid grid-2" style="margin-top:.75rem">
-      <div class="card"><div class="card__body"><h3>Machinaal waxen</h3><p>Snelle lakverzorging met verhoogde glans en basisbescherming.</p></div></div>
-      <div class="card"><div class="card__body"><h3>Keramische coating</h3><p>Maximale bescherming en waterafstoting met een diepe glans.</p></div></div>
-      <div class="card"><div class="card__body"><h3>Interieur dieptereiniging</h3><p>Grondige reiniging van stoffen/lederen bekleding, dashboard en panelen.</p></div></div>
-      <div class="card"><div class="card__body"><h3>Velgen & remklauwen</h3><p>Intensieve reiniging en bescherming tegen remstof en vuil.</p></div></div>
-    </div>
-  </div>
-</section>
+  <!-- Services Packages -->
+  <section class="services-section">
+    <div class="container">
+      <div class="services-grid">
+        <article class="service-card" data-service="basis">
+          <div class="service-card__icon">
+            <i class="fas fa-car" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Basis</h3>
+            <ul class="service-card__features">
+              <li>Exterieur & interieur reiniging</li>
+              <li>Velgen reiniging</li>
+              <li>Basis wax</li>
+            </ul>
+            <button class="btn btn-accent service-card__cta" data-service="basis">
+              Boek basis
+            </button>
+          </div>
+        </article>
 
-  
-<footer class="footer section">
-  <div class="container cols">
-    <div>
-      <h3 style="margin:0 0 .4rem">Annemans Automotive</h3>
-      <p class="lead">Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+        <article class="service-card service-card--featured" data-service="geavanceerd">
+          <div class="service-card__badge">Populair</div>
+          <div class="service-card__icon">
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Geavanceerd</h3>
+            <ul class="service-card__features">
+              <li>Grondige lakreiniging</li>
+              <li>Interieur dieptereiniging</li>
+              <li>Beschermlaag</li>
+            </ul>
+            <button class="btn btn-accent service-card__cta" data-service="geavanceerd">
+              Boek geavanceerd
+            </button>
+          </div>
+        </article>
+
+        <article class="service-card" data-service="ultra">
+          <div class="service-card__icon">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Ultra Keramisch</h3>
+            <ul class="service-card__features">
+              <li>Keramische coating</li>
+              <li>Paint protection film</li>
+              <li>2 jaar garantie</li>
+            </ul>
+            <button class="btn btn-accent service-card__cta" data-service="ultra">
+              Boek ultra
+            </button>
+          </div>
+        </article>
+      </div>
     </div>
-    <div>
-      <h4>Pagina’s</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="work.html">Ons werk</a></li>
-        <li><a href="over-ons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+  </section>
+
+  <!-- Detailed Services -->
+  <section class="detailed-services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="kicker">Specials</span>
+        <h2 class="section-title">Gedetailleerde diensten</h2>
+      </div>
+      <div class="detailed-services-grid">
+        <article class="detailed-service-card">
+          <div class="detailed-service-card__icon">
+            <i class="fas fa-magic" aria-hidden="true"></i>
+          </div>
+          <div class="detailed-service-card__content">
+            <h3>Machinaal waxen</h3>
+            <p>Snelle lakverzorging met verhoogde glans en basisbescherming.</p>
+          </div>
+        </article>
+
+        <article class="detailed-service-card">
+          <div class="detailed-service-card__icon">
+            <i class="fas fa-gem" aria-hidden="true"></i>
+          </div>
+          <div class="detailed-service-card__content">
+            <h3>Keramische coating</h3>
+            <p>Maximale bescherming en waterafstoting met een diepe glans.</p>
+          </div>
+        </article>
+
+        <article class="detailed-service-card">
+          <div class="detailed-service-card__icon">
+            <i class="fas fa-couch" aria-hidden="true"></i>
+          </div>
+          <div class="detailed-service-card__content">
+            <h3>Interieur dieptereiniging</h3>
+            <p>Grondige reiniging van stoffen/lederen bekleding, dashboard en panelen.</p>
+          </div>
+        </article>
+
+        <article class="detailed-service-card">
+          <div class="detailed-service-card__icon">
+            <i class="fas fa-circle" aria-hidden="true"></i>
+          </div>
+          <div class="detailed-service-card__content">
+            <h3>Velgen & remklauwen</h3>
+            <p>Intensieve reiniging en bescherming tegen remstof en vuil.</p>
+          </div>
+        </article>
+      </div>
     </div>
-    <div>
-      <h4>Contact</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
-        <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
-        <li>Regio: Vlaanderen</li>
-      </ul>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Klaar voor premium detailing?</h2>
+        <p class="cta-description">Geef uw wagen de behandeling die het verdient. Van basis reiniging tot volledige keramische coating.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-accent btn-large" onclick="bookConsultation()">
+            Boek nu een afspraak
+          </button>
+          <a href="work.html" class="btn btn-outline btn-large">
+            Bekijk ons werk
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Annemans Automotive</h3>
+        <p>Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Pagina's</h4>
+        <ul>
+          <li><a href="diensten.html">Diensten</a></li>
+          <li><a href="work.html">Ons werk</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
+          <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
+          <li>Regio: Vlaanderen</li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
 
+<!-- Notification Toast -->
+<div id="toast" class="toast" role="alert" aria-live="polite">
+  <div class="toast-content">
+    <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+    <span class="toast-message"></span>
+  </div>
+</div>
+
+<script src="Diensten.js"></script>
 </body>
 </html>
