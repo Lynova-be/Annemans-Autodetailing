@@ -1,82 +1,821 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welkom | Annemans Automotive</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Diensten_style.css">
   <link rel="stylesheet" href="modern.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Hero Video Styles */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      object-fit: cover;
+    }
+
+    .desktop-video {
+      display: block;
+    }
+
+    .mobile-video {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-video {
+        display: none;
+      }
+      
+      .mobile-video {
+        display: block;
+      }
+    }
+
+    /* Hero overlay for better text readability */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      z-index: 2;
+    }
+
+    /* Hero content styling */
+    .hero .content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 800px;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .hero__sub {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+
+    .slogan {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, #00A650 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInWithDelay 1.5s ease forwards;
+      animation-delay: 5s;
+    }
+
+    @keyframes slideInWithDelay {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn--accent {
+      background: linear-gradient(135deg, #00A650, #00D468);
+      color: #000000;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn--accent:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0, 166, 80, 0.4);
+      background: linear-gradient(135deg, #00D468, #00A650);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn--ghost:hover {
+      transform: translateY(-3px);
+      border-color: #00A650;
+      background: rgba(0, 166, 80, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Homepage Cards Section */
+    .cards-section {
+      position: relative;
+      padding: 4rem 0;
+      background: transparent;
+      z-index: 10; /* Ensure it stays above CardSwap effect */
+    }
+
+    .home-cards-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .home-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .home-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      padding: 3rem 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      display: block;
+      z-index: 5; /* Ensure cards stay above CardSwap effect */
+    }
+
+    .home-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 166, 80, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 166, 80, 0.1);
+    }
+
+    .home-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 166, 80, 0.5), transparent);
+    }
+
+    .home-card::after {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 2rem;
+      height: 2rem;
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.2), rgba(0, 166, 80, 0.1));
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .home-card:hover::after {
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.4), rgba(0, 166, 80, 0.2));
+      transform: scale(1.2);
+    }
+
+    .home-card .kicker {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.2), rgba(0, 166, 80, 0.1));
+      color: #00A650;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(0, 166, 80, 0.2);
+    }
+
+    .home-card h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .home-card .lead {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hero .content {
+        padding: 1rem;
+      }
+
+      .hero__sub {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .slogan {
+        margin-bottom: 2rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .btn--accent,
+      .btn--ghost {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+
+      .home-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .home-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .home-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .home-card .lead {
+        font-size: 1rem;
+      }
+
+      .cards-section {
+        padding: 3rem 0;
+      }
+
+      .home-cards-container {
+        padding: 0 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .home-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .home-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Card Swap Effect Styling - Fully isolated */
+    .card-swap-section {
+      position: relative;
+      min-height: 500px;
+      padding: 4rem 0;
+      overflow: visible;
+      z-index: 1; /* Keep below other content */
+      isolation: isolate; /* Create new stacking context */
+    }
+
+    .card-swap-container {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 300px;
+      perspective: 900px;
+      overflow: visible;
+      transform-origin: bottom center;
+      z-index: 1; /* Ensure it stays within its section */
+      isolation: isolate; /* Isolate from parent elements */
+    }
+
+    .card-swap-section .swap-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      border: 2px solid rgba(0, 166, 80, 0.3);
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+      backdrop-filter: blur(20px);
+      transform-style: preserve-3d;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: all 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      overflow: hidden;
+      cursor: pointer;
+      z-index: auto; /* Let natural stacking order apply */
+    }
+
+    .card-swap-section .swap-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    /* Initial positions for stacked effect - scoped to card-swap-section */
+    .card-swap-section .swap-card[data-index="0"] {
+      transform: translateX(-50%) translateY(-50%) translateZ(0px);
+      z-index: 4;
+    }
+
+    .card-swap-section .swap-card[data-index="1"] {
+      transform: translateX(-50%) translateY(-50%) translateX(40px) translateY(-50px) translateZ(-60px);
+      z-index: 3;
+    }
+
+    .card-swap-section .swap-card[data-index="2"] {
+      transform: translateX(-50%) translateY(-50%) translateX(80px) translateY(-100px) translateZ(-120px);
+      z-index: 2;
+    }
+
+    .card-swap-section .swap-card[data-index="3"] {
+      transform: translateX(-50%) translateY(-50%) translateX(120px) translateY(-150px) translateZ(-180px);
+      z-index: 1;
+    }
+
+    /* Hover effects - scoped */
+    .card-swap-section .swap-card:hover {
+      border-color: rgba(0, 166, 80, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 166, 80, 0.2);
+    }
+
+    /* Animation classes - scoped */
+    .card-swap-section .swap-card.dropping {
+      transform: translateX(-50%) translateY(calc(-50% + 500px)) translateZ(0px) !important;
+    }
+
+    .card-swap-section .swap-card.returning {
+      transition-duration: 2.5s;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .card-swap-container {
+        width: 350px;
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card-swap-container {
+        width: 280px;
+        height: 200px;
+        transform: translateX(-50%) scale(0.75);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-swap-container {
+        width: 240px;
+        height: 170px;
+        transform: translateX(-50%) scale(0.6);
+      }
+
+      .card-swap-section {
+        min-height: 400px;
+      }
+    }
+
+    /* Footer z-index fix */
+    .footer {
+      position: relative;
+      z-index: 20 !important; /* Ensure footer stays above CardSwap effect */
+    }
+  </style>
 </head>
 <body>
-  
+  <!-- Advanced Background Effects - Exact same as other pages -->
+  <div class="floating-particles"></div>
+  <div class="geometric-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="diagonal-grid"></div>
+  <div class="noise-overlay"></div>
 
-<header class="site-header" role="banner">
-  <div class="site-header__row">
-    <a class="brand" href="index.html">
-      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=9" alt="" class="logo">
-    </a>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="diensten.html">Diensten</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="work.html">Werk</a>
-      <a class="btn btn-accent" href="contact.html">Boek nu</a>
-    </nav>
+  <!-- Animated Gradient Orbs -->
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+  <div class="gradient-orb orb-3"></div>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="site-header__row">
+      <a class="brand" href="index.html">
+        <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=9" alt="Annemans Automotive" class="logo">
+      </a>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+        <a href="diensten.html" class="nav-link">Diensten</a>
+        <a href="over-ons.html" class="nav-link">Over ons</a>
+        <a href="work.html" class="nav-link">Werk</a>
+        <a class="btn btn-accent" href="contact.html">Boek nu</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section with Video Background -->
+  <div class="hero">
+    <video autoplay muted playsinline id="hero-video" class="desktop-video">
+      <source src="video/hero_background.mkv" type="video/webm">
+    </video>
+    <video autoplay muted playsinline id="hero-video-mobile" class="mobile-video">
+      <source src="video/hero_background_mobile.mp4" type="video/mp4">
+    </video>
+    
+    <div class="content">
+      <p class="hero__sub">Premium detailing • Interieur • Exterieur • Keramische coating</p>
+      <h1 class="slogan">Jouw auto. Ons vakmanschap</h1>
+      <div class="hero-cta">
+        <a class="btn btn--accent" href="contact.html">
+          <i class="fas fa-calendar-check"></i>
+          Offerte aanvragen
+        </a>
+        <a class="btn btn--ghost" href="diensten.html">
+          <i class="fas fa-eye"></i>
+          Bekijk diensten
+        </a>
+      </div>
+    </div>
   </div>
-</header>
 
-<div class="hero">
-        <video autoplay muted playsinline id="hero-video" class="desktop-video">
-            <source src="video/hero_background.mkv" type="video/webm">
-            <source src="video/hero_background.mp4" type="video/mp4">
-        </video>
-        <video autoplay muted playsinline id="hero-video-mobile" class="mobile-video">
-            <source src="video/hero_background_mobile.mp4" type="video/mp4">
-        </video>
-        <div class="content"><p class="hero__sub">Premium detailing • Interieur • Exterieur • Keramische coating</p>
-            <h1 class="slogan">Jouw auto. Ons vakmanschap</h1>
-            <div class="hero-cta">
-<a class="btn btn--accent" href="contact.html">Offerte aanvragen</a>
-<a class="btn btn--ghost" href="diensten.html">Bekijk diensten</a>
-</div>
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Home Cards Section -->
+    <section class="cards-section">
+      <div class="home-cards-container">
+        <div class="home-cards-grid">
+          <a class="home-card" href="diensten.html">
+            <div class="card__body">
+              <span class="kicker">Diensten</span>
+              <h2>Alles voor uw wagen</h2>
+              <p class="lead">Van dieptereiniging tot keramische coating. Bekijk onze pakketten en specials.</p>
+            </div>
+          </a>
+          
+          <a class="home-card" href="work.html">
+            <div class="card__body">
+              <span class="kicker">Werk</span>
+              <h2>Foto's & Video's</h2>
+              <p class="lead">Bekijk recente projecten en resultaten die spreken.</p>
+            </div>
+          </a>
+          
+          <a class="home-card" href="contact.html">
+            <div class="card__body">
+              <span class="kicker">Contact</span>
+              <h2>Boek direct</h2>
+              <p class="lead">Snel een afspraak of offerte? We reageren vlot.</p>
+            </div>
+          </a>
         </div>
-<section class="section">
-  <div class="container">
-    <div class="grid grid-3">
-      <a class="card" href="diensten.html"><div class="card__body"><span class="kicker">Diensten</span><h2>Alles voor uw wagen</h2><p class="lead">Van dieptereiniging tot keramische coating. Bekijk onze pakketten en specials.</p></div></a>
-      <a class="card" href="work.html"><div class="card__body"><span class="kicker">Werk</span><h2>Foto's & Video's</h2><p class="lead">Bekijk recente projecten en resultaten die spreken.</p></div></a>
-      <a class="card" href="contact.html"><div class="card__body"><span class="kicker">Contact</span><h2>Boek direct</h2><p class="lead">Snel een afspraak of offerte? We reageren vlot.</p></div></a>
+      </div>
+    </section>
+    
+    <!-- Card Swap Effect Section -->
+    <section class="card-swap-section">
+      <div class="card-swap-container" id="cardSwapContainer">
+        <div class="swap-card active" data-index="0">
+          <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg" alt="Keramische coating">
+        </div>
+        <div class="swap-card" data-index="1">
+          <img src="image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg" alt="Interieur cleaning">
+        </div>
+        <div class="swap-card" data-index="2">
+          <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg" alt="Car polishing">
+        </div>
+        <div class="swap-card" data-index="3">
+          <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg" alt="Wheel cleaning">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Annemans Automotive</h3>
+          <p>Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Pagina's</h4>
+          <ul>
+            <li><a href="diensten.html">Diensten</a></li>
+            <li><a href="work.html">Ons werk</a></li>
+            <li><a href="over-ons.html">Over ons</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
+            <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
+            <li>Regio: Vlaanderen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+      <span class="toast-message"></span>
     </div>
   </div>
-</section>
 
-<footer class="footer section">
-  <div class="container cols">
-    <div>
-      <h3 style="margin:0 0 .4rem">Annemans Automotive</h3>
-      <p class="lead">Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
-    </div>
-    <div>
-      <h4>Pagina’s</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="work.html">Ons werk</a></li>
-        <li><a href="over-ons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
-        <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
-        <li>Regio: Vlaanderen</li>
-      </ul>
-    </div>
-  </div>
-</footer>
+  <script src="script.js"></script>
+  <script>
+    // Video optimization for performance
+    document.addEventListener('DOMContentLoaded', function() {
+      const videos = document.querySelectorAll('video');
+      const videoStates = new Map(); // Track video states
+      
+      videos.forEach(video => {
+        // Initialize video state
+        videoStates.set(video, { hasEnded: false });
+        
+        video.addEventListener('loadeddata', () => {
+          console.log('Video loaded successfully');
+        });
+        
+        video.addEventListener('error', (e) => {
+          console.error('Video loading error:', e);
+        });
+        
+        // Track when video ends
+        video.addEventListener('ended', () => {
+          videoStates.set(video, { hasEnded: true });
+          console.log('Video has ended and will stay paused');
+        });
+      });
+      
+      // Pause video when not in view (performance optimization)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          const state = videoStates.get(video);
+          
+          if (entry.isIntersecting) {
+            // Only play if video hasn't ended
+            if (!state.hasEnded) {
+              video.play().catch(e => console.log('Video play failed:', e));
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      videos.forEach(video => observer.observe(video));
+      
+      console.log('Annemans Automotive - Homepage geladen met moderne styling en video achtergrond');
+    });
 
+    // Smooth scroll for hero CTA buttons
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
 
+    // Add reveal animations for cards
+    const cards = document.querySelectorAll('.home-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 150);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Initialize card animations
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      cardObserver.observe(card);
+    });
+
+    // Card Swap Effect
+    class CardSwap {
+      constructor(container, options = {}) {
+        this.container = container;
+        this.cards = Array.from(container.querySelectorAll('.swap-card'));
+        this.currentOrder = this.cards.map((_, i) => i);
+        this.isAnimating = false;
+        
+        // Configuration
+        this.config = {
+          delay: options.delay || 4000,
+          cardDistance: options.cardDistance || 40,
+          verticalDistance: options.verticalDistance || 50,
+          pauseOnHover: options.pauseOnHover !== false,
+          ...options
+        };
+        
+        this.init();
+      }
+      
+      init() {
+        this.positionCards();
+        this.startAutoSwap();
+        
+        if (this.config.pauseOnHover) {
+          this.container.addEventListener('mouseenter', () => this.pauseAutoSwap());
+          this.container.addEventListener('mouseleave', () => this.startAutoSwap());
+        }
+        
+        // Add click handlers
+        this.cards.forEach(card => {
+          card.addEventListener('click', () => {
+            if (!this.isAnimating) {
+              this.swapCards();
+            }
+          });
+        });
+      }
+      
+      positionCards() {
+        this.cards.forEach((card, index) => {
+          const position = this.calculatePosition(index);
+          this.applyPosition(card, position, index);
+        });
+      }
+      
+      calculatePosition(index) {
+        const { cardDistance, verticalDistance } = this.config;
+        return {
+          x: index * cardDistance,
+          y: -index * verticalDistance,
+          z: -index * cardDistance * 1.5,
+          zIndex: this.cards.length - index
+        };
+      }
+      
+      applyPosition(card, position, index) {
+        card.style.transform = `translateX(-50%) translateY(-50%) translateX(${position.x}px) translateY(${position.y}px) translateZ(${position.z}px)`;
+        card.style.zIndex = position.zIndex;
+        card.setAttribute('data-index', index);
+      }
+      
+      async swapCards() {
+        if (this.isAnimating || this.cards.length < 2) return;
+        
+        this.isAnimating = true;
+        const frontCard = this.cards[this.currentOrder[0]];
+        const restCards = this.currentOrder.slice(1);
+        
+        // Step 1: Drop front card
+        frontCard.classList.add('dropping');
+        
+        // Step 2: Move other cards forward (with delay)
+        setTimeout(() => {
+          restCards.forEach((cardIndex, i) => {
+            const card = this.cards[cardIndex];
+            const newPosition = this.calculatePosition(i);
+            this.applyPosition(card, newPosition, i);
+          });
+        }, 600);
+        
+        // Step 3: Move dropped card to back
+        setTimeout(() => {
+          const backPosition = this.calculatePosition(this.cards.length - 1);
+          frontCard.classList.remove('dropping');
+          frontCard.classList.add('returning');
+          this.applyPosition(frontCard, backPosition, this.cards.length - 1);
+          
+          // Update order
+          this.currentOrder = [...restCards, this.currentOrder[0]];
+          
+          setTimeout(() => {
+            frontCard.classList.remove('returning');
+            this.isAnimating = false;
+          }, 2500);
+        }, 1200);
+      }
+      
+      startAutoSwap() {
+        this.clearAutoSwap();
+        this.autoSwapInterval = setInterval(() => {
+          this.swapCards();
+        }, this.config.delay);
+      }
+      
+      pauseAutoSwap() {
+        this.clearAutoSwap();
+      }
+      
+      clearAutoSwap() {
+        if (this.autoSwapInterval) {
+          clearInterval(this.autoSwapInterval);
+          this.autoSwapInterval = null;
+        }
+      }
+      
+      destroy() {
+        this.clearAutoSwap();
+        this.container.removeEventListener('mouseenter', this.pauseAutoSwap);
+        this.container.removeEventListener('mouseleave', this.startAutoSwap);
+      }
+    }
+    
+    // Initialize Card Swap Effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cardSwapContainer = document.getElementById('cardSwapContainer');
+      if (cardSwapContainer) {
+        new CardSwap(cardSwapContainer, {
+          delay: 5000,
+          cardDistance: 60,
+          verticalDistance: 70,
+          pauseOnHover: true
+        });
+      }
+    });
+  </script>
 </body>
 </html>

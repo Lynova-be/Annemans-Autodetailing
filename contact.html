@@ -1,83 +1,897 @@
 <!DOCTYPE html>
 <html lang="nl" class="inner">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Annemans Automotive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Diensten_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Contact Form Styles */
+    .contact-form-section {
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .contact-form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .contact-form-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 166, 80, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 166, 80, 0.1);
+    }
+
+    .contact-form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 166, 80, 0.5), transparent);
+    }
+
+    .form-header {
+      margin-bottom: 2rem;
+    }
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .form-title i {
+      color: #00A650;
+      font-size: 1.5rem;
+    }
+
+    .form-description {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group.double {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #00A650;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba(0, 166, 80, 0.2);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 1rem center;
+      background-repeat: no-repeat;
+      background-size: 1rem;
+      padding-right: 3rem;
+    }
+
+    .form-select option {
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      background: linear-gradient(135deg, #00A650, #00D468);
+      color: #000000;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      justify-self: start;
+      min-width: 200px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(0, 166, 80, 0.4);
+      background: linear-gradient(135deg, #00D468, #00A650);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    /* Contact Info Card */
+    .contact-info-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 166, 80, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 166, 80, 0.1);
+    }
+
+    .contact-info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 166, 80, 0.5), transparent);
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .contact-method:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 166, 80, 0.3);
+    }
+
+    .contact-method-icon {
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, #00A650, #00D468);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000000;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method-info h4 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 1.125rem;
+    }
+
+    .contact-method-info p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+
+    .contact-method-info a {
+      color: #00A650;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-method-info a:hover {
+      color: #00D468;
+    }
+
+    /* Service Areas Section */
+    .service-areas-section {
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .service-areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .area-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+      transition: all 0.5s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .area-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 166, 80, 0.5);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    }
+
+    .area-icon {
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.2), rgba(0, 166, 80, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: #00A650;
+    }
+
+    .area-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .area-description {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .faq-item {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-item:hover {
+      border-color: rgba(0, 166, 80, 0.3);
+    }
+
+    .faq-question {
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: none;
+      border: none;
+      width: 100%;
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .faq-question i {
+      color: #00A650;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer.active {
+      max-height: 200px;
+    }
+
+    .faq-answer-content {
+      padding: 0 2rem 1.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    /* Response animation */
+    .form-success {
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.2), rgba(0, 166, 80, 0.1));
+      border: 1px solid rgba(0, 166, 80, 0.3);
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      color: #00A650;
+      margin-top: 1rem;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-success.show {
+      display: flex;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .contact-form-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+      }
+
+      .contact-form-card,
+      .contact-info-card {
+        padding: 2rem;
+      }
+
+      .form-group.double {
+        grid-template-columns: 1fr;
+      }
+
+      .form-title {
+        font-size: 1.5rem;
+      }
+
+      .service-areas-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .area-card {
+        padding: 1.5rem;
+      }
+
+      .faq-container {
+        padding: 0 1rem;
+      }
+
+      .faq-question {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .faq-answer-content {
+        padding: 0 1.5rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-<header class="site-header" role="banner">
-  <div class="site-header__row">
-    <a class="brand" href="index.html">
-      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
-    </a>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="diensten.html">Diensten</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="work.html">Werk</a>
-      <a class="btn btn-accent" href="contact.html">Boek nu</a>
-    </nav>
-  </div>
-</header>
+  <!-- Advanced Background Effects - Exact same as diensten pagina -->
+  <div class="floating-particles"></div>
+  <div class="geometric-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="diagonal-grid"></div>
+  <div class="noise-overlay"></div>
 
-  
-<section class="section">
-  <div class="container feature">
-    <div class="card"><div class="card__body">
-      <span class="kicker" id="boek">Contact</span>
-      <h1>Maak een afspraak</h1>
-      <form class="grid">
-        <input class="input" placeholder="Naam" required>
-        <input class="input" type="email" placeholder="E-mail" required>
-        <input class="input" type="tel" placeholder="Telefoon">
-        <select class="input" required>
-          <option value="">Kies onderwerp</option>
-          <option>Afspraak</option><option>Offerte</option><option>Informatie</option>
-        </select>
-        <textarea class="input" rows="5" placeholder="Bericht"></textarea>
-        <button class="btn btn-accent" type="submit" style="justify-self:start">Versturen</button>
-      </form>
-    </div></div>
-    <div class="card" style="min-height:320px"><div class="card__body">
-      <h3>Bereik ons</h3>
-      <p>Bel: <a href="tel:+3200000000">+32 000 00 00</a><br>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></p>
-      <p>Adres: Vlaanderen (werkgebied)</p>
-      <p>WhatsApp beschikbaar • Flexibele planning</p>
-    </div></div>
-  </div>
-</section>
+  <!-- Animated Gradient Orbs -->
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+  <div class="gradient-orb orb-3"></div>
 
-  
-<footer class="footer section">
-  <div class="container cols">
-    <div>
-      <h3 style="margin:0 0 .4rem">Annemans Automotive</h3>
-      <p class="lead">Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="site-header__row">
+      <a class="brand" href="index.html">
+        <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
+      </a>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+        <a href="diensten.html" class="nav-link">Diensten</a>
+        <a href="over-ons.html" class="nav-link">Over ons</a>
+        <a href="work.html" class="nav-link">Werk</a>
+        <a class="btn btn-accent" href="#">Boek nu</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-    <div>
-      <h4>Pagina’s</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="work.html">Ons werk</a></li>
-        <li><a href="over-ons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+  </header>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <span class="kicker">Contact</span>
+          <h1 class="hero-title">Laten We Verbinding Maken</h1>
+          <p class="hero-description">Klaar om uw voertuig te transformeren? Neem contact met ons op voor een persoonlijke offerte of om een afspraak in te plannen</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+      <div class="contact-form-container">
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+          <div class="form-header">
+            <h2 class="form-title">
+              <i class="fas fa-calendar-check"></i>
+              Boek Een Afspraak
+            </h2>
+            <p class="form-description">
+              Vul het formulier in en we nemen binnen 24 uur contact met u op om uw afspraak te bevestigen en alle details te bespreken.
+            </p>
+          </div>
+
+          <form class="contact-form" id="contactForm" action="">
+            <div class="form-group double">
+              <input type="text" class="form-input" placeholder="Voornaam" name="firstName" required>
+              <input type="text" class="form-input" placeholder="Achternaam" name="lastName" required>
+            </div>
+
+            <div class="form-group double">
+              <input type="email" class="form-input" placeholder="E-mailadres" name="email" required>
+              <input type="tel" class="form-input" placeholder="Telefoonnummer" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <select class="form-select" name="service" required>
+                <option value="">Selecteer gewenste service</option>
+                <option value="basis">Basis Pakket</option>
+                <option value="geavanceerd">Geavanceerd Pakket</option>
+                <option value="ultra">Ultra Keramisch Pakket</option>
+                <option value="custom">Op Maat Gemaakt</option>
+                <option value="info">Alleen Informatie</option>
+              </select>
+            </div>
+
+            <div class="form-group double">
+              <input type="text" class="form-input" placeholder="Merk & Model" name="vehicle">
+              <select class="form-select" name="timeframe">
+                <option value="">Gewenste tijdsperiode</option>
+                <option value="asap">Zo snel mogelijk</option>
+                <option value="week">Deze week</option>
+                <option value="month">Deze maand</option>
+                <option value="flexible">Flexibel</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-textarea" placeholder="Vertel ons meer over uw wensen, specifieke eisen of vragen..." name="message" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              <i class="fas fa-paper-plane"></i>
+              Verstuur Aanvraag
+            </button>
+
+            <div class="form-success" id="formSuccess">
+              <i class="fas fa-check-circle"></i>
+              Bedankt! We nemen binnen 24 uur contact met u op.
+            </div>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info-card">
+          <div class="form-header">
+            <h2 class="form-title">
+              <i class="fas fa-address-book"></i>
+              Contact Informatie
+            </h2>
+            <p class="form-description">
+              Bereik ons direct via onderstaande kanalen. We zijn beschikbaar van maandag tot zaterdag voor al uw vragen.
+            </p>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-method-info">
+              <h4>Telefoon</h4>
+              <p><a href="tel:+3200000000">+32 000 00 00</a></p>
+              <p>Ma-Za: 08:00 - 18:00</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-method-info">
+              <h4>WhatsApp</h4>
+              <p><a href="https://wa.me/3200000000">+32 000 00 00</a></p>
+              <p>Snelle reactie & foto's</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-method-info">
+              <h4>E-mail</h4>
+              <p><a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></p>
+              <p>Reactie binnen 24 uur</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-method-info">
+              <h4>Service Gebied</h4>
+              <p>Geheel Vlaanderen</p>
+              <p>Mobiele service beschikbaar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="service-areas-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Service Gebied</span>
+          <h2 class="section-title">Waar Vind Je Ons?</h2>
+          <p>We bieden onze premium autodetailing services aan in geheel Vlaanderen met flexibele locatie opties</p>
+        </div>
+
+        
+
+          <div class="area-card">
+            <div class="area-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="area-name">Bedrijfslocaties</h3>
+            <p class="area-description">Service op kantoorparkings, bedrijfsterreinen en andere zakelijke locaties voor fleet management.</p>
+          </div>
+
+          <div class="area-card">
+            <div class="area-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="area-name">Flexibele Planning</h3>
+            <p class="area-description">Afspraken mogelijk van maandag tot zaterdag, inclusief avond- en weekendservice op aanvraag.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Veelgestelde Vragen</span>
+          <h2 class="section-title">Heeft U Nog Vragen?</h2>
+          <p>Hier vindt u antwoorden op de meest gestelde vragen over onze services en werkwijze</p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              Hoe lang duurt een gemiddelde behandeling?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Een basis behandeling duurt 2-3 uur, geavanceerde pakketten 4-6 uur, en ultra keramische coating kan 1-2 dagen in beslag nemen, afhankelijk van de staat van het voertuig.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Komen jullie ook naar mijn huis?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Ja! We bieden mobiele service in geheel Vlaanderen. We brengen al onze professionele apparatuur en producten mee naar uw locatie.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Wat is inbegrepen in de prijs?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Alle pakketten bevatten arbeidskosten, professionele producten, en reiskosten binnen ons servicegebied. Voor specifieke add-ons bespreken we dit vooraf.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Hoe ver van tevoren moet ik boeken?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We raden aan om minimaal 1 week van tevoren te boeken, vooral tijdens drukke perioden. Voor spoedgevallen proberen we altijd een oplossing te vinden.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Bieden jullie garantie op het werk?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Ja, we bieden garantie op alle onze services. Keramische coatings komen met tot 2 jaar garantie, afhankelijk van het gekozen pakket en onderhoud.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Klaar Voor De Ultieme Detailing Ervaring?</h2>
+          <p class="cta-description">
+            Laat uw voertuig stralen zoals nooit tevoren. Boek vandaag nog een afspraak en 
+            ervaar waarom onze klanten keer op keer terugkomen voor onze premium service.
+          </p>
+          <div class="cta-buttons">
+            <a href="#contactForm" class="btn btn-accent btn-large">
+              Boek Nu Een Afspraak
+            </a>
+            <a href="tel:+3200000000" class="btn btn-outline btn-large">
+              <i class="fas fa-phone"></i>
+              Bel Direct
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Annemans Automotive</h3>
+          <p>Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Pagina's</h4>
+          <ul>
+            <li><a href="index.html">Diensten</a></li>
+            <li><a href="work.html">Ons werk</a></li>
+            <li><a href="about-us/index.html">Over ons</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
+            <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
+            <li>Regio: Vlaanderen</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div>
-      <h4>Contact</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
-        <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
-        <li>Regio: Vlaanderen</li>
-      </ul>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+      <span class="toast-message"></span>
     </div>
   </div>
-</footer>
 
+  <script src="Diensten.js"></script>
+  <script>
+    // FAQ Functionality
+    function initFAQ() {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const faqItem = question.parentElement;
+          const answer = faqItem.querySelector('.faq-answer');
+          const isActive = question.classList.contains('active');
+          
+          // Close all other FAQ items
+          faqQuestions.forEach(q => {
+            q.classList.remove('active');
+            q.parentElement.querySelector('.faq-answer').classList.remove('active');
+          });
+          
+          // Toggle current item
+          if (!isActive) {
+            question.classList.add('active');
+            answer.classList.add('active');
+          }
+        });
+      });
+    }
+
+    // Form Handling
+    function initContactForm() {
+      const form = document.getElementById('contactForm');
+      const successMessage = document.getElementById('formSuccess');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simple form validation
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Basic validation
+        if (!data.firstName || !data.lastName || !data.email || !data.service) {
+          alert('Vul alstublieft alle verplichte velden in.');
+          return;
+        }
+
+        // Simulate form submission
+        const submitButton = form.querySelector('.form-submit');
+        const originalText = submitButton.innerHTML;
+        
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verzenden...';
+        submitButton.disabled = true;
+        
+        setTimeout(() => {
+          successMessage.classList.add('show');
+          form.reset();
+          submitButton.innerHTML = originalText;
+          submitButton.disabled = false;
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 5000);
+        }, 1000);
+      });
+    }
+
+    // Smooth scroll for CTA button
+    function initSmoothScroll() {
+      const ctaButton = document.querySelector('a[href="#contactForm"]');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetForm = document.getElementById('contactForm');
+          if (targetForm) {
+            targetForm.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start' 
+            });
+            // Focus on first input
+            setTimeout(() => {
+              targetForm.querySelector('input').focus();
+            }, 500);
+          }
+        });
+      }
+    }
+
+    // Reveal animations
+    function initRevealAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observe elements for reveal animation
+      document.querySelectorAll('.contact-form-card, .contact-info-card, .area-card, .faq-item').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Initialize all functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      initFAQ();
+      initContactForm();
+      initSmoothScroll();
+      initRevealAnimations();
+    });
+
+    console.log('Annemans Automotive - Contact pagina geladen met identieke achtergrond effecten');
+  </script>
 </body>
 </html>

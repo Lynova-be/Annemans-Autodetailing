@@ -1,295 +1,1559 @@
 <!DOCTYPE html>
 <html lang="nl" class="inner">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ons werk | Annemans Automotive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Diensten_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Interactive Collage Styles */
+    .photo-collage-container {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .category-btn {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      font-weight: 500;
+    }
+
+    .category-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .category-btn.active {
+      background: #00A650;
+      color: #000000;
+      border-color: #00A650;
+      box-shadow: 0 0 20px rgba(0, 166, 80, 0.3);
+    }
+
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 1rem;
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+      padding: 2rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+    }
+
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .photo-item.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-item.size-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .photo-item.size-wide {
+      grid-column: span 2;
+    }
+
+    .photo-item.size-tall {
+      grid-row: span 2;
+    }
+
+    .photo-item:hover {
+      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 166, 80, 0.2);
+      border-color: rgba(0, 166, 80, 0.5);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+
+    .photo-item:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .photo-category {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(0, 166, 80, 0.9);
+      color: #000000;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      width: fit-content;
+    }
+
+    .photo-title {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .zoom-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2rem;
+      height: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .photo-item:hover .zoom-icon {
+      opacity: 1;
+      background: rgba(0, 166, 80, 0.9);
+    }
+
+    .zoom-icon i {
+      color: #ffffff;
+      font-size: 0.875rem;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      animation: lightboxZoom 0.3s ease-out;
+    }
+
+    @keyframes lightboxZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .lightbox img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      padding: 2rem;
+      border-radius: 0 0 1rem 1rem;
+      color: #ffffff;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -3rem;
+      right: 0;
+      width: 3rem;
+      height: 3rem;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(0, 0, 0, 0.9);
+      color: #00A650;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(0, 0, 0, 0.9);
+      color: #00A650;
+    }
+
+    .lightbox-prev {
+      left: -4rem;
+    }
+
+    .lightbox-next {
+      right: -4rem;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      color: #00A650;
+      margin-bottom: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    /* Enhanced Video Portfolio Section */
+    .video-portfolio-section {
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .video-bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 166, 80, 0.05) 0%,
+        transparent 25%,
+        transparent 75%,
+        rgba(0, 166, 80, 0.03) 100%
+      );
+      z-index: 0;
+    }
+
+    .video-grid-container {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Featured Large Video */
+    .featured-video {
+      position: relative;
+    }
+
+    .video-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(15px);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .video-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .video-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(0, 166, 80, 0.6);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 166, 80, 0.2);
+    }
+
+    .large-video {
+      height: 500px;
+    }
+
+    .small-video {
+      height: 240px;
+    }
+
+    .video-thumbnail {
+      position: relative;
+      height: 70%;
+      overflow: hidden;
+    }
+
+    .video-thumbnail video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .video-card:hover .video-thumbnail video {
+      transform: scale(1.08);
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.5)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0.8;
+    }
+
+    .video-card:hover .video-overlay {
+      opacity: 1;
+      background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.7)
+      );
+    }
+
+    .play-button {
+      width: 4.5rem;
+      height: 4.5rem;
+      background: linear-gradient(135deg, rgba(0, 166, 80, 0.9), rgba(0, 166, 80, 1));
+      border: none;
+      border-radius: 50%;
+      color: #000000;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0, 166, 80, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .small-video .play-button {
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.25rem;
+    }
+
+    .play-button:hover {
+      background: linear-gradient(135deg, #00A650, #00D468);
+      transform: scale(1.15);
+      box-shadow: 0 12px 32px rgba(0, 166, 80, 0.5);
+    }
+
+    .video-quality-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0, 166, 80, 0.9);
+      color: #000000;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .video-info {
+      position: relative;
+      padding: 1.5rem;
+      height: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .small-video .video-info {
+      padding: 1rem;
+    }
+
+    .video-title {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .small-video .video-title {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .video-description {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .small-video .video-description {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-meta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .video-duration,
+    .video-category {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+    }
+
+    .video-duration i,
+    .video-category i {
+      color: #00A650;
+    }
+
+    /* Small Video Grid */
+    .video-grid-small {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Video Stats */
+    .video-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .video-stat {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .video-stat i {
+      font-size: 2rem;
+      color: #00A650;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .photo-collage-container {
+        padding: 1rem;
+      }
+
+      .collage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 1rem;
+      }
+
+      .photo-item.size-large,
+      .photo-item.size-wide {
+        grid-column: span 2;
+      }
+
+      .photo-item.size-tall {
+        grid-row: span 1;
+      }
+
+      .category-filters {
+        gap: 0.5rem;
+      }
+
+      .category-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      .lightbox-nav {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Video Portfolio Responsive */
+      .video-grid-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .large-video {
+        height: 350px;
+      }
+
+      .small-video {
+        height: 200px;
+      }
+
+      .video-grid-small {
+        gap: 1rem;
+      }
+
+      .video-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .video-stat {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .video-stat i {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .video-grid-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .featured-video {
+        order: 1;
+      }
+
+      .video-grid-small {
+        order: 2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .large-video {
+        height: 300px;
+      }
+
+      .small-video {
+        height: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Advanced Background Effects - Exact same as diensten pagina -->
+  <div class="floating-particles"></div>
+  <div class="geometric-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="diagonal-grid"></div>
+  <div class="noise-overlay"></div>
   
-<header class="site-header" role="banner">
-  <div class="site-header__row">
-    <a class="brand" href="index.html">
-      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
-    </a>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="diensten.html">Diensten</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="work.html">Werk</a>
-      <a class="btn btn-accent" href="contact.html">Boek nu</a>
-    </nav>
-  </div>
-</header>
-
-  
-<!-- Werk: Collage -->
-<section class="section work-collage">
-  <div class="container">
-    <span class="kicker">Werk</span>
-    <h1>Foto's</h1>
-
-    <div class="collage-grid">
-      <!-- 28 items (pas paden aan je mapstructuur aan) -->
-      <!-- Tip: geef desgewenst data-caption voor lightbox ondertitel -->
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg" data-index="0" data-caption="Project 01">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg" alt="Project 01" loading="lazy">
+  <header class="site-header" role="banner">
+    <div class="site-header__row">
+      <a class="brand" href="index.html">
+        <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
       </a>
-      <a class="collage-item tall" href="image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg" data-index="1" data-caption="Project 02">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg" alt="Project 02" loading="lazy">
-      </a>
-      <a class="collage-item wide" href="image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg" data-index="2" data-caption="Project 03">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg" alt="Project 03" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg" data-index="3" data-caption="Project 04">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg" alt="Project 04" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.57.jpeg" data-index="4" data-caption="Project 05">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.57.jpeg" alt="Project 05" loading="lazy">
-      </a>
-      <a class="collage-item big" href="image/WhatsApp Image 2025-08-04 at 18.38.58 (1).jpeg" data-index="5" data-caption="Project 06">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (1).jpeg" alt="Project 06" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.58 (2).jpeg" data-index="6" data-caption="Project 07">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (2).jpeg" alt="Project 07" loading="lazy">
-      </a>
-      <a class="collage-item wide" href="image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg" data-index="7" data-caption="Project 08">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg" alt="Project 08" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg" data-index="8" data-caption="Project 09">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg" alt="Project 09" loading="lazy">
-      </a>
-      <a class="collage-item tall" href="image/WhatsApp Image 2025-08-04 at 18.38.58 (5).jpeg" data-index="9" data-caption="Project 10">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (5).jpeg" alt="Project 10" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.58.jpeg" data-index="10" data-caption="Project 11">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.58.jpeg" alt="Project 11" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.38.59.jpeg" data-index="11" data-caption="Project 12">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.38.59.jpeg" alt="Project 12" loading="lazy">
-      </a>
-      <a class="collage-item wide" href="image/WhatsApp Image 2025-08-04 at 18.39.00 (1).jpeg" data-index="12" data-caption="Project 13">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (1).jpeg" alt="Project 13" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg" data-index="13" data-caption="Project 14">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg" alt="Project 14" loading="lazy">
-      </a>
-      <a class="collage-item big" href="image/WhatsApp Image 2025-08-04 at 18.39.00 (3).jpeg" data-index="14" data-caption="Project 15">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (3).jpeg" alt="Project 15" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.00 (4).jpeg" data-index="15" data-caption="Project 16">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (4).jpeg" alt="Project 16" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.00.jpeg" data-index="16" data-caption="Project 17">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.00.jpeg" alt="Project 17" loading="lazy">
-      </a>
-      <a class="collage-item tall" href="image/WhatsApp Image 2025-08-04 at 18.39.01 (1).jpeg" data-index="17" data-caption="Project 18">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (1).jpeg" alt="Project 18" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.01 (2).jpeg" data-index="18" data-caption="Project 19">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (2).jpeg" alt="Project 19" loading="lazy">
-      </a>
-      <a class="collage-item wide" href="image/WhatsApp Image 2025-08-04 at 18.39.01 (3).jpeg" data-index="19" data-caption="Project 20">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (3).jpeg" alt="Project 20" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.01.jpeg" data-index="20" data-caption="Project 21">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.01.jpeg" alt="Project 21" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.02 (1).jpeg" data-index="21" data-caption="Project 22">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (1).jpeg" alt="Project 22" loading="lazy">
-      </a>
-      <a class="collage-item big" href="image/WhatsApp Image 2025-08-04 at 18.39.02 (2).jpeg" data-index="22" data-caption="Project 23">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (2).jpeg" alt="Project 23" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.02 (3).jpeg" data-index="23" data-caption="Project 24">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (3).jpeg" alt="Project 24" loading="lazy">
-      </a>
-      <a class="collage-item wide" href="image/WhatsApp Image 2025-08-04 at 18.39.02 (4).jpeg" data-index="24" data-caption="Project 25">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (4).jpeg" alt="Project 25" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.02 (5).jpeg" data-index="25" data-caption="Project 26">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (5).jpeg" alt="Project 26" loading="lazy">
-      </a>
-      <a class="collage-item" href="image/WhatsApp Image 2025-08-04 at 18.39.02.jpeg" data-index="26" data-caption="Project 27">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.39.02.jpeg" alt="Project 27" loading="lazy">
-      </a>
-      <a class="collage-item tall" href="image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg" data-index="27" data-caption="Project 28">
-        <img src="image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg" alt="Project 28" loading="lazy">
-      </a>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+        <a href="diensten.html" class="nav-link">Diensten</a>
+        <a href="over-ons.html" class="nav-link">Over ons</a>
+        <a href="work.html" class="nav-link active">Werk</a>
+        <a class="btn btn-accent" href="contact.html">Boek nu</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- Werk: Video’s -->
-<section class="section work-videos">
-  <div class="container">
-    <span class="kicker">Video</span>
-    <h2>In actie</h2>
-
-    <div class="video-grid">
-      <!-- 4 video kaarten -->
-      <a class="video-card" href="image/WhatsApp Video 2025-08-04 at 18.33.24 (1).mp4" data-video data-caption="Detailing – 01">
-        <video src="image/WhatsApp Video 2025-08-04 at 18.33.24 (1).mp4" muted playsinline preload="metadata"></video>
-        <div class="video-overlay" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><polygon points="18,12 38,24 18,36"></polygon></svg>
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <span class="kicker">Werk</span>
+          <h1 class="hero-title">Portfolio & Resultaten</h1>
+          <p class="hero-description">Ontdek onze transformaties en bekijk waarom we de voorkeur hebben van autobezitters in Vlaanderen</p>
         </div>
-      </a>
-      <a class="video-card" href="image/WhatsApp Video 2025-08-04 at 18.33.24.mp4" data-video data-caption="Coating – 02">
-        <video src="image/WhatsApp Video 2025-08-04 at 18.33.24.mp4" muted playsinline preload="metadata"></video>
-        <div class="video-overlay" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><polygon points="18,12 38,24 18,36"></polygon></svg>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Tevreden Klanten</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-camera"></i>
+            </div>
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Voltooide Projecten</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Klanttevredenheid</div>
+          </div>
         </div>
-      </a>
-      <a class="video-card" href="image/WhatsApp Video 2025-08-04 at 18.33.25.mp4" data-video data-caption="Showroom finish – 03">
-        <video src="image/WhatsApp Video 2025-08-04 at 18.33.25.mp4" muted playsinline preload="metadata"></video>
-        <div class="video-overlay" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><polygon points="18,12 38,24 18,36"></polygon></svg>
+      </div>
+    </section>
+
+    <!-- Interactive Photo Collage Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Fotogalerij</span>
+          <h2 class="section-title">Onze Transformaties</h2>
+          <p>Van avant naar après - bekijk hoe we elk voertuig transformeren naar showroom kwaliteit</p>
         </div>
-      </a>
-      <a class="video-card" href="image/WhatsApp Video 2025-08-04 at 18.43.45.mp4" data-video data-caption="Interieur – 04">
-        <video src="image/WhatsApp Video 2025-08-04 at 18.43.45.mp4" muted playsinline preload="metadata"></video>
-        <div class="video-overlay" aria-hidden="true">
-          <svg viewBox="0 0 48 48"><polygon points="18,12 38,24 18,36"></polygon></svg>
+
+        <div class="photo-collage-container">
+          <!-- Category Filter Buttons -->
+          <div class="category-filters">
+            <button class="category-btn active" data-category="alle">Alle</button>
+            <button class="category-btn" data-category="exterieur">Exterieur</button>
+            <button class="category-btn" data-category="interieur">Interieur</button>
+            <button class="category-btn" data-category="coating">Coating</button>
+            <button class="category-btn" data-category="premium">Premium</button>
+            <button class="category-btn" data-category="luxury">Luxury</button>
+          </div>
+
+          <!-- Interactive Collage Grid -->
+          <div class="collage-grid" id="collageGrid">
+            <div class="photo-item size-large" data-category="premium" data-index="0">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg" alt="Premium BMW Detailing" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Premium BMW Detailing</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="1">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg" alt="Mercedes Velgen Treatment" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Mercedes Velgen Treatment</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-wide" data-category="coating" data-index="2">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg" alt="Audi Paint Correction" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Coating</span>
+                <h3 class="photo-title">Audi Paint Correction</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="coating" data-index="3">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg" alt="Tesla Keramische Coating" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Coating</span>
+                <h3 class="photo-title">Tesla Keramische Coating</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-tall" data-category="interieur" data-index="4">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.57.jpeg" alt="Porsche Interior Detail" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Interieur</span>
+                <h3 class="photo-title">Porsche Interior Detail</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="premium" data-index="5">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (1).jpeg" alt="Lamborghini Premium Care" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Lamborghini Premium Care</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-wide" data-category="luxury" data-index="6">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (2).jpeg" alt="Ferrari Paint Protection" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Ferrari Paint Protection</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="7">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg" alt="Range Rover Complete Detail" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Range Rover Complete Detail</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-large" data-category="luxury" data-index="8">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg" alt="Bentley Luxury Treatment" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Bentley Luxury Treatment</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="premium" data-index="9">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (5).jpeg" alt="McLaren Carbon Care" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">McLaren Carbon Care</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-tall" data-category="exterieur" data-index="10">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58.jpeg" alt="Aston Martin Gloss" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Aston Martin Gloss</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="premium" data-index="11">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.38.59.jpeg" alt="Jaguar F-Type Detail" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Jaguar F-Type Detail</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-wide" data-category="luxury" data-index="12">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (1).jpeg" alt="Maserati Showroom Finish" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Maserati Showroom Finish</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="luxury" data-index="13">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg" alt="Rolls Royce Ultra Care" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Rolls Royce Ultra Care</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-large" data-category="luxury" data-index="14">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (3).jpeg" alt="Bugatti Exclusive Service" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Bugatti Exclusive Service</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="premium" data-index="15">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.00 (4).jpeg" alt="Koenigsegg Hypercar Detail" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Koenigsegg Hypercar Detail</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="16">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.00.jpeg" alt="Lotus Sport Package" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Lotus Sport Package</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-tall" data-category="premium" data-index="17">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (1).jpeg" alt="Pagani Artistry" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Pagani Artistry</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="18">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (2).jpeg" alt="Ford GT Heritage" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Ford GT Heritage</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-wide" data-category="premium" data-index="19">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.01 (3).jpeg" alt="Dodge Viper Power" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Dodge Viper Power</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="20">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.01.jpeg" alt="Corvette American Classic" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Corvette American Classic</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="premium" data-index="21">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (1).jpeg" alt="Nissan GTR Precision" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Nissan GTR Precision</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-large" data-category="premium" data-index="22">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (2).jpeg" alt="Honda NSX Innovation" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Honda NSX Innovation</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="exterieur" data-index="23">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (3).jpeg" alt="Acura Excellence" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Exterieur</span>
+                <h3 class="photo-title">Acura Excellence</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-wide" data-category="luxury" data-index="24">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (4).jpeg" alt="Lexus Perfection" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Lexus Perfection</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="interieur" data-index="25">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02 (5).jpeg" alt="Infiniti Elegance" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Interieur</span>
+                <h3 class="photo-title">Infiniti Elegance</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item" data-category="luxury" data-index="26">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.39.02.jpeg" alt="Genesis Sophistication" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Luxury</span>
+                <h3 class="photo-title">Genesis Sophistication</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+
+            <div class="photo-item size-tall" data-category="premium" data-index="27">
+              <img src="image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg" alt="Custom Project Finale" loading="lazy">
+              <div class="photo-overlay">
+                <span class="photo-category">Premium</span>
+                <h3 class="photo-title">Custom Project Finale</h3>
+              </div>
+              <div class="zoom-icon">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      </a>
+      </div>
+    </section>
+
+    <!-- Video Portfolio Section -->
+    <section class="services-section video-portfolio-section">
+      <!-- Enhanced background gradient -->
+      <div class="video-bg-gradient"></div>
+      
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Video Portfolio</span>
+          <h2 class="section-title">Bekijk Ons In Actie</h2>
+          <p>Zie onze professionals aan het werk en ervaar de precisie en passie waarmee we elk project aanpakken</p>
+        </div>
+
+        <div class="video-grid-container">
+          <!-- Featured Video (Large) -->
+          <div class="featured-video">
+            <div class="video-card large-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.24 (1).mp4" data-caption="Premium Detailing Process">
+              <div class="video-thumbnail">
+                <video src="image/WhatsApp Video 2025-08-04 at 18.33.24 (1).mp4" muted playsinline preload="metadata"></video>
+                <div class="video-overlay">
+                  <button class="play-button">
+                    <i class="fas fa-play"></i>
+                  </button>
+                </div>
+                <div class="video-quality-badge">4K</div>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Premium Detailing Process</h3>
+                <p class="video-description">Bekijk onze volledige premium detailing behandeling van begin tot eind</p>
+                <div class="video-meta">
+                  <span class="video-duration">
+                    <i class="fas fa-clock"></i> 2:45
+                  </span>
+                  <span class="video-category">
+                    <i class="fas fa-tag"></i> Premium
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Three smaller videos -->
+          <div class="video-grid-small">
+            <div class="video-card small-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.24.mp4" data-caption="Keramische Coating Applicatie">
+              <div class="video-thumbnail">
+                <video src="image/WhatsApp Video 2025-08-04 at 18.33.24.mp4" muted playsinline preload="metadata"></video>
+                <div class="video-overlay">
+                  <button class="play-button">
+                    <i class="fas fa-play"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="video-info">
+                <h4 class="video-title">Keramische Coating</h4>
+                <p class="video-description">Premium bescherming in actie</p>
+                <div class="video-meta">
+                  <span class="video-duration">
+                    <i class="fas fa-clock"></i> 1:30
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="video-card small-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.25.mp4" data-caption="Showroom Finish">
+              <div class="video-thumbnail">
+                <video src="image/WhatsApp Video 2025-08-04 at 18.33.25.mp4" muted playsinline preload="metadata"></video>
+                <div class="video-overlay">
+                  <button class="play-button">
+                    <i class="fas fa-play"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="video-info">
+                <h4 class="video-title">Showroom Afwerking</h4>
+                <p class="video-description">Het eindresultaat van onze diensten</p>
+                <div class="video-meta">
+                  <span class="video-duration">
+                    <i class="fas fa-clock"></i> 1:15
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="video-card small-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.43.45.mp4" data-caption="Interieur Dieptereiniging">
+              <div class="video-thumbnail">
+                <video src="image/WhatsApp Video 2025-08-04 at 18.43.45.mp4" muted playsinline preload="metadata"></video>
+                <div class="video-overlay">
+                  <button class="play-button">
+                    <i class="fas fa-play"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="video-info">
+                <h4 class="video-title">Interieur Reiniging</h4>
+                <p class="video-description">Dieptereiniging van uw interieur</p>
+                <div class="video-meta">
+                  <span class="video-duration">
+                    <i class="fas fa-clock"></i> 2:10
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Geïnspireerd door ons werk?</h2>
+          <p class="cta-description">
+            Laat ons ook jouw voertuig transformeren naar showroom kwaliteit. 
+            Boek nu een afspraak en ervaar het verschil.
+          </p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-accent btn-large">
+              Boek nu een afspraak
+            </a>
+            <a href="index.html" class="btn btn-outline btn-large">
+              Bekijk onze diensten
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="work-lightbox" id="lightbox" hidden>
+    <button class="work-lightbox-close" aria-label="Sluiten">×</button>
+    <button class="work-lightbox-nav work-lightbox-prev" aria-label="Vorige">‹</button>
+    <button class="work-lightbox-nav work-lightbox-next" aria-label="Volgende">›</button>
+    <div class="work-lightbox-inner">
+      <img class="work-lightbox-img" alt="">
+      <video class="work-lightbox-video" controls playsinline></video>
+      <div class="work-lightbox-caption"></div>
     </div>
   </div>
-</section>
 
-<!-- Lightbox -->
-<div class="lb" id="lightbox" hidden>
-  <button class="lb__close" aria-label="Sluiten">×</button>
-  <button class="lb__nav lb__prev" aria-label="Vorige">‹</button>
-  <button class="lb__nav lb__next" aria-label="Volgende">›</button>
-  <div class="lb__inner">
-    <img class="lb__img" alt="">
-    <video class="lb__video" controls playsinline></video>
-    <div class="lb__cap"></div>
-  </div>
-</div>
-
-<script src="lightbox.js"></script>
-
-  
-<footer class="footer section">
-  <div class="container cols">
-    <div>
-      <h3 style="margin:0 0 .4rem">Annemans Automotive</h3>
-      <p class="lead">Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Annemans Automotive</h3>
+          <p>Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Pagina's</h4>
+          <ul>
+            <li><a href="index.html">Diensten</a></li>
+            <li><a href="work.html">Ons werk</a></li>
+            <li><a href="about-us/index.html">Over ons</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
+            <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
+            <li>Regio: Vlaanderen</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div>
-      <h4>Pagina’s</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="work.html">Ons werk</a></li>
-        <li><a href="over-ons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
-        <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
-        <li>Regio: Vlaanderen</li>
-      </ul>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+      <span class="toast-message"></span>
     </div>
   </div>
-</footer>
 
-<script>
-/* ==== Reveal op scroll ==== */
-const toReveal = document.querySelectorAll('.collage-item, .video-card');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); }
-  });
-},{threshold:.14});
-toReveal.forEach(el => io.observe(el));
+  <script src="script.js"></script>
 
-/* ==== Lightbox (images + videos) ==== */
-const lb = document.getElementById('lightbox');
-const lbImg = lb.querySelector('.lb__img');
-const lbVideo = lb.querySelector('.lb__video');
-const lbCap = lb.querySelector('.lb__cap');
-const closeBtn = lb.querySelector('.lb__close');
-const prevBtn = lb.querySelector('.lb__prev');
-const nextBtn = lb.querySelector('.lb__next');
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-content" id="lightboxContent">
+      <img id="lightboxImg" alt="">
+      <div class="lightbox-info" id="lightboxInfo">
+        <span class="photo-category" id="lightboxCategory"></span>
+        <h3 class="photo-title" id="lightboxTitle"></h3>
+        <div id="lightboxCounter"></div>
+      </div>
+    </div>
+  </div>
 
-const gallery = [...document.querySelectorAll('.collage-item')];
-let currentIndex = -1;
+  <script>
+    // Photo data array for easier management
+    const photoData = [
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg', title: 'Premium BMW Detailing', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg', title: 'Mercedes Velgen Treatment', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg', title: 'Audi Paint Correction', category: 'coating' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg', title: 'Tesla Keramische Coating', category: 'coating' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57.jpeg', title: 'Porsche Interior Detail', category: 'interieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (1).jpeg', title: 'Lamborghini Premium Care', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (2).jpeg', title: 'Ferrari Paint Protection', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg', title: 'Range Rover Complete Detail', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg', title: 'Bentley Luxury Treatment', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (5).jpeg', title: 'McLaren Carbon Care', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58.jpeg', title: 'Aston Martin Gloss', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.59.jpeg', title: 'Jaguar F-Type Detail', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (1).jpeg', title: 'Maserati Showroom Finish', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg', title: 'Rolls Royce Ultra Care', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (3).jpeg', title: 'Bugatti Exclusive Service', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (4).jpeg', title: 'Koenigsegg Hypercar Detail', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00.jpeg', title: 'Lotus Sport Package', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.01 (1).jpeg', title: 'Pagani Artistry', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.01 (2).jpeg', title: 'Ford GT Heritage', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.01 (3).jpeg', title: 'Dodge Viper Power', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.01.jpeg', title: 'Corvette American Classic', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02 (1).jpeg', title: 'Nissan GTR Precision', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02 (2).jpeg', title: 'Honda NSX Innovation', category: 'premium' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02 (3).jpeg', title: 'Acura Excellence', category: 'exterieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02 (4).jpeg', title: 'Lexus Perfection', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02 (5).jpeg', title: 'Infiniti Elegance', category: 'interieur' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.39.02.jpeg', title: 'Genesis Sophistication', category: 'luxury' },
+      { src: 'image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg', title: 'Custom Project Finale', category: 'premium' }
+    ];
 
-function openImage(index){
-  currentIndex = index;
-  const a = gallery[index];
-  lbImg.src = a.getAttribute('href');
-  lbImg.hidden = false;
-  lbVideo.hidden = true;
-  lbCap.textContent = a.dataset.caption || '';
-  lb.hidden = false;
-}
-function openVideo(src, cap=''){
-  currentIndex = -1; // geen nav voor video’s
-  lbVideo.src = src;
-  lbVideo.hidden = false;
-  lbImg.hidden = true;
-  lbCap.textContent = cap;
-  lb.hidden = false;
-  lbVideo.play();
-}
-function closeLB(){
-  lb.hidden = true;
-  lbImg.src = '';
-  lbVideo.pause(); lbVideo.src = '';
-}
-function nav(delta){
-  if (currentIndex < 0) return; // videos: skip
-  currentIndex = (currentIndex + delta + gallery.length) % gallery.length;
-  openImage(currentIndex);
-}
+    let currentCategory = 'alle';
+    let filteredPhotos = [...photoData];
+    let currentPhotoIndex = 0;
 
-gallery.forEach((a, i)=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    openImage(i);
-  });
-});
+    // DOM Elements
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const photoItems = document.querySelectorAll('.photo-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCategory = document.getElementById('lightboxCategory');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
 
-document.querySelectorAll('[data-video]').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    openVideo(a.getAttribute('href'), a.dataset.caption || '');
-  });
-});
+    // Initialize reveal animations
+    function initRevealAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('reveal');
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
-closeBtn.addEventListener('click', closeLB);
-prevBtn.addEventListener('click', ()=>nav(-1));
-nextBtn.addEventListener('click', ()=>nav(1));
-document.addEventListener('keydown', (e)=>{
-  if (lb.hidden) return;
-  if (e.key === 'Escape') closeLB();
-  if (e.key === 'ArrowLeft') nav(-1);
-  if (e.key === 'ArrowRight') nav(1);
-});
+      // Observe photo items
+      photoItems.forEach(item => {
+        observer.observe(item);
+      });
 
-/* ==== Auto-play/pause videos on view, hover starts instantly ==== */
-const vCards = document.querySelectorAll('.video-card video');
-const vio = new IntersectionObserver((entries)=>{
-  entries.forEach(({isIntersecting, target})=>{
-    if (isIntersecting){ target.play().catch(()=>{}); }
-    else { target.pause(); }
-  });
-},{threshold:.5});
-vCards.forEach(v=> {
-  vio.observe(v);
-  v.parentElement.addEventListener('mouseenter', ()=> v.play().catch(()=>{}));
-  v.parentElement.addEventListener('mouseleave', ()=> v.pause());
-});
-</script>
+      // Observe video cards
+      const videoCards = document.querySelectorAll('.video-card');
+      videoCards.forEach(item => {
+        observer.observe(item);
+      });
+    }
 
+    // Category filtering
+    function filterPhotos(category) {
+      currentCategory = category;
+      
+      // Update active button
+      categoryBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === category);
+      });
 
+      // Filter and show/hide photos
+      photoItems.forEach((item, index) => {
+        const itemCategory = item.dataset.category;
+        const shouldShow = category === 'alle' || itemCategory === category;
+        
+        if (shouldShow) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.classList.add('reveal');
+          }, index * 50);
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('reveal');
+        }
+      });
+
+      // Update filtered photos array for lightbox navigation
+      if (category === 'alle') {
+        filteredPhotos = [...photoData];
+      } else {
+        filteredPhotos = photoData.filter(photo => photo.category === category);
+      }
+    }
+
+    // Lightbox functionality
+    function openLightbox(index) {
+      const photo = filteredPhotos[index];
+      if (!photo) return;
+
+      currentPhotoIndex = index;
+      lightboxImg.src = photo.src;
+      lightboxImg.alt = photo.title;
+      lightboxCategory.textContent = photo.category.charAt(0).toUpperCase() + photo.category.slice(1);
+      lightboxTitle.textContent = photo.title;
+      lightboxCounter.textContent = `${index + 1} / ${filteredPhotos.length}`;
+      
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      const newIndex = currentPhotoIndex + direction;
+      if (newIndex >= 0 && newIndex < filteredPhotos.length) {
+        openLightbox(newIndex);
+      }
+    }
+
+    // Event listeners
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterPhotos(btn.dataset.category);
+      });
+    });
+
+    photoItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        const itemCategory = item.dataset.category;
+        const photoIndex = parseInt(item.dataset.index);
+        
+        // Find the correct index in filtered photos
+        let filteredIndex = 0;
+        if (currentCategory !== 'alle') {
+          filteredIndex = filteredPhotos.findIndex(photo => 
+            photoData.findIndex(p => p === photo) === photoIndex
+          );
+        } else {
+          filteredIndex = photoIndex;
+        }
+        
+        openLightbox(filteredIndex);
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+    lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+    // Close lightbox when clicking outside content
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          navigateLightbox(-1);
+          break;
+        case 'ArrowRight':
+          navigateLightbox(1);
+          break;
+      }
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initRevealAnimations();
+      initVideoFunctionality();
+      
+      // Trigger initial reveal for visible items
+      setTimeout(() => {
+        photoItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('reveal');
+          }, index * 100);
+        });
+
+        // Trigger reveal for video cards
+        const videoCards = document.querySelectorAll('.video-card');
+        videoCards.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('reveal');
+          }, (index * 150) + 200);
+        });
+      }, 300);
+    });
+
+    // Enhanced video functionality
+    function initVideoFunctionality() {
+      const videoCards = document.querySelectorAll('.video-card');
+      const videos = document.querySelectorAll('.video-card video');
+
+      // Auto-play videos on hover/viewport intersection
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      videos.forEach(video => {
+        videoObserver.observe(video);
+        
+        // Play on hover
+        video.parentElement.parentElement.addEventListener('mouseenter', () => {
+          video.play().catch(() => {});
+        });
+        
+        // Pause on leave
+        video.parentElement.parentElement.addEventListener('mouseleave', () => {
+          video.pause();
+        });
+      });
+
+      // Play button functionality
+      videoCards.forEach(card => {
+        const playBtn = card.querySelector('.play-button');
+        const video = card.querySelector('video');
+        
+        if (playBtn && video) {
+          playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Create fullscreen video modal or redirect to video
+            console.log('Opening video:', card.dataset.src);
+            
+            // Simple implementation: play video in current element
+            if (video.paused) {
+              video.play();
+              playBtn.style.opacity = '0';
+              
+              // Show play button again when video ends
+              video.addEventListener('ended', () => {
+                playBtn.style.opacity = '1';
+              });
+            } else {
+              video.pause();
+              playBtn.style.opacity = '1';
+            }
+          });
+        }
+      });
+    }
+
+    console.log('Annemans Automotive - Interactieve fotocollage geladen');
+  </script>
 </body>
 </html>

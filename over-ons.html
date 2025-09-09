@@ -1,95 +1,253 @@
 <!DOCTYPE html>
 <html lang="nl" class="inner">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Over ons | Annemans Automotive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="modern.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Diensten_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  
-<header class="site-header" role="banner">
-  <div class="site-header__row">
-    <a class="brand" href="index.html">
-      <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
-    </a>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="diensten.html">Diensten</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="work.html">Werk</a>
-      <a class="btn btn-accent" href="contact.html">Boek nu</a>
-    </nav>
-  </div>
-</header>
+  <!-- Advanced Background Effects - Exact same as diensten pagina -->
+  <div class="floating-particles"></div>
+  <div class="geometric-bg"></div>
+  <div class="grid-pattern"></div>
+  <div class="diagonal-grid"></div>
+  <div class="noise-overlay"></div>
 
-  
-<section class="section about">
-  <div class="container feature about-grid">
-    <!-- Tekst / glass card -->
-    <div class="about-copy card glass">
-      <span class="kicker">Over ons</span>
-      <h1>Over Annemans Automotive</h1>
-      <p class="lead">Kwaliteit, vakmanschap en zorg voor jouw voertuig</p>
+  <header class="site-header" role="banner">
+    <div class="site-header__row">
+      <a class="brand" href="index.html">
+        <img src="image/374173fb-4619-486e-9adb-294f0cc84687.png?v=3" alt="Annemans Automotive" class="logo">
+      </a>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+        <a href="diensten.html" class="nav-link">Diensten</a>
+        <a href="#" class="nav-link active">Over ons</a>
+        <a href="work.html" class="nav-link">Werk</a>
+        <a class="btn btn-accent" href="contact.html">Boek nu</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
-      <p>Bij Annemans Automotive staan we voor topkwaliteit en vakmanschap in autoverzorging. Wij bieden een breed scala aan premium diensten, van interieur- en exterieurreiniging tot polijsten, coatings en bescherming, voor zowel auto’s, motoren als mobilhomes. Onze missie is simpel: jouw voertuig de zorg geven die het verdient, met oog voor detail en duurzaamheid.</p>
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <span class="kicker">Over ons</span>
+          <h1 class="hero-title">Over Annemans Automotive</h1>
+          <p class="hero-description">Kwaliteit, vakmanschap en zorg voor jouw voertuig</p>
+        </div>
+      </div>
+    </section>
 
-      <p>Met jarenlange ervaring in de automotive sector en een passie voor perfectie, zorgen wij voor de uitstraling en het behoud van jouw voertuig, ongeacht het type of de conditie. Of het nu gaat om een eenvoudige reiniging, een diepe lakbehandeling, of een complete bescherming met keramische coatings – bij ons ben je aan het juiste adres.</p>
+    <!-- About Content Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="about-content-grid">
+          <!-- Text Content -->
+          <div class="service-card service-card--about">
+            <p class="about-intro-text">
+              Bij Annemans Automotive staan we voor topkwaliteit en vakmanschap in autoverzorging. 
+              Wij bieden een breed scala aan premium diensten, van interieur- en exterieurreiniging 
+              tot polijsten, coatings en bescherming, voor zowel auto's, motoren als mobilhomes. 
+              Onze missie is simpel: jouw voertuig de zorg geven die het verdient, met oog voor 
+              detail en duurzaamheid.
+            </p>
 
-      <h3>Waarom kiezen voor ons?</h3>
-      <ul class="list-check">
-        <li>Professionele kwaliteit en uitstekende service</li>
-        <li>Op maat gemaakte oplossingen voor elke klant</li>
-        <li>Flexibele werkopties, inclusief werken op locatie</li>
-        <li>Betrouwbare, eerlijke communicatie en transparante prijzen</li>
-      </ul>
+            <p class="about-intro-text">
+              Met ervaring in de automotive sector en een passie voor perfectie, 
+              zorgen wij voor de uitstraling en het behoud van jouw voertuig, ongeacht het type 
+              of de conditie. Of het nu gaat om een eenvoudige reiniging, een diepe lakbehandeling, 
+              of een complete bescherming met keramische coatings – bij ons ben je aan het juiste adres.
+            </p>
 
-      <h3>Samenwerken met ons?</h3>
-      <p>We werken voor particulieren én bedrijven (autodealers, lease- en verhuurbedrijven) die hun voertuigen willen onderhouden en beschermen.</p>
+            <div class="about-features">
+              <h3>Waarom kiezen voor ons?</h3>
+              <ul class="about-features-list">
+                <li>Professionele kwaliteit en uitstekende service</li>
+                <li>Op maat gemaakte oplossingen voor elke klant</li>
+                <li>Flexibele werkopties, inclusief werken op locatie</li>
+                <li>Betrouwbare, eerlijke communicatie en transparante prijzen</li>
+              </ul>
+            </div>
 
-      <div class="about-cta">
-        <a class="btn btn--accent" href="contact.html#boek">Vraag een offerte aan</a>
-        <a class="btn btn--ghost" href="diensten.html">Bekijk diensten</a>
+            <div class="about-collaboration">
+              <h3>Samenwerken met ons?</h3>
+              <p class="about-intro-text">
+                We werken voor particulieren én bedrijven (autodealers, lease- en verhuurbedrijven) 
+                die hun voertuigen willen onderhouden en beschermen.
+              </p>
+            </div>
+
+            <div class="about-buttons">
+              <a href="../contact.html" class="btn btn-accent">
+                Vraag een offerte aan
+              </a>
+              <a href="../index.html" class="btn btn-outline">
+                Bekijk diensten
+              </a>
+            </div>
+          </div>
+
+          <!-- Image Content -->
+          <div class="about-image-container">
+            <img src="image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg" alt="Detailing aan het werk" class="about-main-image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="detailed-services-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Onze waarden</span>
+          <h2 class="section-title">Waar we voor staan</h2>
+          <p>Onze kernwaarden vormen de basis van alles wat we doen</p>
+        </div>
+        
+        <div class="detailed-services-grid">
+          <article class="detailed-service-card">
+            <div class="detailed-service-card__icon">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            </div>
+            <div class="detailed-service-card__content">
+              <h3>Kwaliteit</h3>
+              <p>Vakmanschap en perfectie in elk detail</p>
+            </div>
+          </article>
+
+          <article class="detailed-service-card">
+            <div class="detailed-service-card__icon">
+              <i class="fas fa-bullseye" aria-hidden="true"></i>
+            </div>
+            <div class="detailed-service-card__content">
+              <h3>Precisie</h3>
+              <p>Gerichte aanpak voor optimale resultaten</p>
+            </div>
+          </article>
+
+          <article class="detailed-service-card">
+            <div class="detailed-service-card__icon">
+              <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="detailed-service-card__content">
+              <h3>Service</h3>
+              <p>Persoonlijke aandacht voor elke klant</p>
+            </div>
+          </article>
+
+          <article class="detailed-service-card">
+            <div class="detailed-service-card__icon">
+              <i class="fas fa-award" aria-hidden="true"></i>
+            </div>
+            <div class="detailed-service-card__content">
+              <h3>Garantie</h3>
+              <p>Betrouwbaarheid en langdurige resultaten</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="service-card center">
+          <h2 class="section-title">
+            Ervaring in de automotive sector
+          </h2>
+          <p class="hero-description">
+            Met een passie voor perfectie en oog voor detail zorgen we ervoor dat 
+            elk voertuig de premium behandeling krijgt die het verdient. Van klassieke 
+            auto's tot moderne elektrische voertuigen.
+          </p>
+          
+          <div class="experience-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Tevreden klanten</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Jaar ervaring</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Kwaliteitsgarantie</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Klaar om kennis te maken?</h2>
+          <p class="cta-description">
+            Ontdek wat Annemans Automotive voor jouw voertuig kan betekenen. 
+            Neem contact op voor een vrijblijvende offerte.
+          </p>
+          <div class="cta-buttons">
+            <a href="../contact.html" class="btn btn-accent btn-large">
+              Neem contact op
+            </a>
+            <a href="../index.html" class="btn btn-outline btn-large">
+              Bekijk onze diensten
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Annemans Automotive</h3>
+          <p>Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Pagina's</h4>
+          <ul>
+            <li><a href="../index.html">Diensten</a></li>
+            <li><a href="../work.html">Ons werk</a></li>
+            <li><a href="index.html">Over ons</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
+            <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
+            <li>Regio: Vlaanderen</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </footer>
 
-    <!-- Beeld / media card -->
-    <figure class="about-media">
-      <img src="image/WhatsApp Image 2025-08-04 at 18.43.45 (1).jpeg" alt="Detailing aan het werk">
-    </figure>
-  </div>
-</section>
-
-
-
-  
-<footer class="footer section">
-  <div class="container cols">
-    <div>
-      <h3 style="margin:0 0 .4rem">Annemans Automotive</h3>
-      <p class="lead">Premium detailing: interieur, exterieur, keramische coating & showroom afwerking.</p>
-    </div>
-    <div>
-      <h4>Pagina’s</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="work.html">Ons werk</a></li>
-        <li><a href="over-ons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul style="list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:.35rem">
-        <li>Bel: <a href="tel:+3200000000">+32 000 00 00</a></li>
-        <li>Mail: <a href="mailto:info@annemans-auto.be">info@annemans-auto.be</a></li>
-        <li>Regio: Vlaanderen</li>
-      </ul>
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+      <span class="toast-message"></span>
     </div>
   </div>
-</footer>
 
+  <script src="Diensten.js"></script>
 </body>
 </html>
