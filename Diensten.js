@@ -556,3 +556,90 @@ function createAdvancedBackground() {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = AnnemansServices;
 }
+
+(function () {
+  function isClickOutside(target, el) {
+    return !el.contains(target);
+  }
+
+  const cards = Array.from(document.querySelectorAll('.detailed-service-card'));
+  if (!cards.length) return;
+  let openCard = null;
+
+  function open(card) {
+    if (openCard && openCard !== card) close(openCard);
+    card.classList.add('expanded');
+    card.setAttribute('aria-expanded', 'true');
+    const extra = card.querySelector('.detailed-service-card__extra');
+    if (extra) extra.setAttribute('aria-hidden', 'false');
+
+    if (extra) {
+      // force reflow for transition consistency
+      extra.style.maxHeight = ''; // reset first
+      const needed = extra.scrollHeight;
+      extra.style.maxHeight = needed + 'px';
+    }
+    openCard = card;
+  }
+
+  function close(card) {
+    card.classList.remove('expanded');
+    card.setAttribute('aria-expanded', 'false');
+    const extra = card.querySelector('.detailed-service-card__extra');
+    if (extra) extra.setAttribute('aria-hidden', 'true');
+
+    if (extra) {
+      // set to current height then to 0 for smooth collapse
+      extra.style.maxHeight = extra.scrollHeight + 'px';
+      // allow the browser to paint before collapsing
+      requestAnimationFrame(() => {
+        extra.style.maxHeight = '0px';
+      });
+    }
+
+    if (openCard === card) openCard = null;
+  }
+
+  function toggle(card) {
+    if (card.classList.contains('expanded')) close(card);
+    else open(card);
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', function (e) {
+      const tag = e.target.tagName.toLowerCase();
+      if (tag === 'a' || tag === 'button' || e.target.closest('a') || e.target.closest('button')) return;
+      toggle(card);
+    });
+
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(card);
+      } else if (e.key === 'Escape') {
+        if (card.classList.contains('expanded')) close(card);
+      }
+    });
+  });
+
+  function outsideListener(e) {
+    if (!openCard) return;
+    if (isClickOutside(e.target, openCard)) close(openCard);
+  }
+
+  document.addEventListener('mousedown', outsideListener);
+  document.addEventListener('touchstart', outsideListener);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && openCard) close(openCard);
+  });
+
+  window.addEventListener('resize', function () {
+    if (openCard) {
+      const extra = openCard.querySelector('.detailed-service-card__extra');
+      if (extra && openCard.classList.contains('expanded')) {
+        extra.style.maxHeight = extra.scrollHeight + 'px';
+      }
+    }
+  });
+})();
