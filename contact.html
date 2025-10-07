@@ -769,39 +769,52 @@
           </ul>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Notification Toast -->
-  <div id="toast" class="toast" role="alert" aria-live="polite">
-    <div class="toast-content">
-      <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
-      <span class="toast-message"></span>
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="polite">
+      <div class="toast-content">
+        <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+        <span class="toast-message"></span>
+      </div>
     </div>
-  </div>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Optional local config (not committed): emailjs.config.js sets window.EMAILJS_CONFIG -->
+    <script src="emailjs.config.js" onerror="/* optional file */"></script>
+    <script>
+      // Read keys from optional window.EMAILJS_CONFIG, otherwise fallback placeholders
+      const EMAILJS_PUBLIC_KEY = window.EMAILJS_CONFIG?.PUBLIC_KEY || 'Jnp88qeL8KUPVsT-e';
+      const EMAILJS_SERVICE_ID = window.EMAILJS_CONFIG?.SERVICE_ID || 'service_yri26zf';
+      const EMAILJS_TEMPLATE_ID = window.EMAILJS_CONFIG?.TEMPLATE_ID || 'template_98zo2jf';
 
-  <script src="Diensten.js"></script>
-  <script>
+      // Initialize EmailJS (kept for compatibility, but sending happens server-side)
+      if (window.emailjs && typeof emailjs.init === 'function') {
+        console.log('[EmailJS] key:', (EMAILJS_PUBLIC_KEY || '').trim());
+        console.log('[EmailJS] service/template:', EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID);
+        emailjs.init({ publicKey: (EMAILJS_PUBLIC_KEY || '').trim() });
+      }
+
     // FAQ Functionality
     function initFAQ() {
       const faqQuestions = document.querySelectorAll('.faq-question');
-      
       faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
           const faqItem = question.parentElement;
           const answer = faqItem.querySelector('.faq-answer');
           const isActive = question.classList.contains('active');
-          
+
           // Close all other FAQ items
           faqQuestions.forEach(q => {
             q.classList.remove('active');
-            q.parentElement.querySelector('.faq-answer').classList.remove('active');
+            const a = q.parentElement.querySelector('.faq-answer');
+            if (a) a.classList.remove('active');
           });
-          
+
           // Toggle current item
           if (!isActive) {
             question.classList.add('active');
-            answer.classList.add('active');
+            if (answer) answer.classList.add('active');
           }
         });
       });
@@ -811,7 +824,6 @@
     function initContactForm() {
       const form = document.getElementById('contactForm');
       const successMessage = document.getElementById('formSuccess');
-      
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -825,24 +837,57 @@
           return;
         }
 
-        // Simulate form submission
+        // Submit via EmailJS
         const submitButton = form.querySelector('.form-submit');
         const originalText = submitButton.innerHTML;
-        
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verzenden...';
         submitButton.disabled = true;
-        
-        setTimeout(() => {
-          successMessage.classList.add('show');
-          form.reset();
-          submitButton.innerHTML = originalText;
-          submitButton.disabled = false;
-          
-          // Hide success message after 5 seconds
-          setTimeout(() => {
-            successMessage.classList.remove('show');
-          }, 5000);
-        }, 1000);
+
+        const templateParams = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone || '',
+          service: data.service,
+          vehicle: data.vehicle || '',
+          timeframe: data.timeframe || '',
+          message: data.message || ''
+        };
+
+        // Serverless send via Vercel function
+        fetch('/api/send-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(templateParams)
+        })
+          .then(async (r) => {
+            if (!r.ok) {
+              const detail = await r.text().catch(() => '');
+              throw new Error(`Server error ${r.status}: ${detail}`);
+            }
+            successMessage.classList.add('show');
+            form.reset();
+            try {
+              const toast = document.getElementById('toast');
+              const msg = toast && toast.querySelector('.toast-message');
+              if (toast && msg) {
+                msg.textContent = 'Verzonden! We nemen binnen 24 uur contact op.';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+              }
+            } catch (_) {}
+          })
+          .catch((err) => {
+            console.error('Serverless send error:', err);
+            alert('Versturen mislukt. Probeer later opnieuw of neem contact op via e-mail.');
+          })
+          .finally(() => {
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            setTimeout(() => {
+              successMessage.classList.remove('show');
+            }, 5000);
+          });
       });
     }
 
