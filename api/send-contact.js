@@ -7,11 +7,35 @@
 // - EMAILJS_REPLY_TO (fallback email if form email missing)
 
 export default async function handler(req, res) {
+  // CORS headers (safe for same-origin and cross-origin)
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+
+  if (req.method === 'GET') {
+    return res.status(200).json({ ok: true, message: 'send-contact OK' });
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   try {
+    // Vercel Node functions usually provide parsed JSON in req.body,
+    // but be defensive if it's a string or undefined.
+    let body = req.body;
+    if (typeof body === 'string') {
+      try { body = JSON.parse(body); } catch { body = {}; }
+    }
+    if (!body) {
+      // Attempt to read raw buffer (rare)
+      body = {};
+    }
+
     const {
       firstName = '',
       lastName = '',
@@ -21,7 +45,7 @@ export default async function handler(req, res) {
       vehicle = '',
       timeframe = '',
       message = ''
-    } = req.body || {};
+    } = body;
 
     // Basic validation
     if (!firstName || !lastName || !service) {
