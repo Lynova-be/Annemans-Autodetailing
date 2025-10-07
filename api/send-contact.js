@@ -17,6 +17,14 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'GET') {
+    const debug = (req.query && (req.query.debug === '1' || req.query.debug === 'true')) || false;
+    if (debug) {
+      const hasPrivate = Boolean(process.env.EMAILJS_PRIVATE_KEY);
+      const hasPublic = Boolean(process.env.EMAILJS_PUBLIC_KEY);
+      const hasService = Boolean(process.env.EMAILJS_SERVICE_ID);
+      const hasTemplate = Boolean(process.env.EMAILJS_TEMPLATE_ID);
+      return res.status(200).json({ ok: true, debug: true, hasPrivate, hasPublic, hasService, hasTemplate });
+    }
     return res.status(200).json({ ok: true, message: 'send-contact OK' });
   }
 
