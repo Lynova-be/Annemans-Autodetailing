@@ -53,10 +53,11 @@ export default async function handler(req, res) {
     }
 
     const PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY;
+    const PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY; // EmailJS 'user_id'
     const SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
     const TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID;
 
-    if (!PRIVATE_KEY || !SERVICE_ID || !TEMPLATE_ID) {
+    if (!PRIVATE_KEY || !PUBLIC_KEY || !SERVICE_ID || !TEMPLATE_ID) {
       return res.status(500).json({ error: 'Server email configuration is missing' });
     }
 
@@ -83,6 +84,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         service_id: SERVICE_ID,
         template_id: TEMPLATE_ID,
+        user_id: PUBLIC_KEY,
         template_params
       })
     });
