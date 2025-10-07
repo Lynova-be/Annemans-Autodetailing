@@ -1265,10 +1265,121 @@ body::after {
   outline-offset: 2px;
 }
 
-/* High contrast mode */
+ /* High contrast mode */
 @media (prefers-contrast: high) {
   :root {
     --color-border: rgba(255, 255, 255, 0.3);
     --color-text-muted: rgba(255, 255, 255, 0.8);
   }
 }
+
+/* ========== MODAL (diensten.html) ========== */
+/* Professional, structured look aligned with site variables */
+.service-modal__dialog {
+  background: linear-gradient(180deg, rgba(17,17,17,0.98), rgba(12,12,12,0.98));
+  border: 1px solid var(--color-border);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  backdrop-filter: saturate(120%) blur(4px);
+  border-radius: var(--radius-xl);
+  padding: clamp(18px, 2.5vw, 28px);
+}
+
+.service-modal[aria-hidden="false"] .service-modal__dialog {
+  animation: aaModalIn 180ms ease-out;
+}
+@keyframes aaModalIn {
+  from { transform: translateY(8px) scale(0.985); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);     opacity: 1; }
+}
+
+.service-modal__close {
+  font-size: 18px;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.service-modal__close:hover { background: rgba(255,255,255,0.10); transform: scale(1.04); }
+.service-modal__close i { pointer-events: none; }
+
+.service-modal__content {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: var(--font-size-base);
+}
+
+.service-modal__content .extra-title,
+.service-modal__content h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1.35rem, 2.2vw, 1.55rem);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: 0.2px;
+}
+.service-modal__content h4 {
+  margin: 18px 0 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.service-modal__content p { margin: 0 0 12px; color: var(--color-text-muted); }
+
+.service-modal__content ul,
+.service-modal__content ol {
+  margin: 8px 0 16px;
+  padding-left: 22px;
+}
+.service-modal__content li { margin: 4px 0; }
+
+.service-modal__content .price-box {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
+  border: 1px solid var(--color-border);
+  padding: 16px 18px;
+  border-radius: 14px;
+}
+.service-modal__content .price {
+  color: var(--color-primary);
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 0.2px;
+}
+
+/* Optional nicer scrollbar within dialog */
+  .service-modal__dialog::-webkit-scrollbar { width: 10px; }
+  .service-modal__dialog::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 12px; }
+  .service-modal__dialog::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 12px; border: 2px solid rgba(0,0,0,0.2); }
+
+  /* Services cards: equal height and aligned CTA */
+  .services-section .services-grid {
+    align-items: stretch; /* make grid items equal height */
+  }
+
+  .services-section .services-grid > .service-card {
+    height: 100%;
+    display: flex;           /* vertical layout */
+    flex-direction: column;
+  }
+
+  .services-section .service-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    flex: 1;                 /* fill height so CTA sits at bottom */
+  }
+
+  .services-section .service-card__features {
+    margin-bottom: var(--spacing-lg); /* a bit tighter before desc */
+  }
+
+  .services-section .service-card__desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .services-section .service-card__cta {
+    width: 100%;
+    margin-top: auto;        /* push CTA to bottom */
+    align-self: center;
+  }

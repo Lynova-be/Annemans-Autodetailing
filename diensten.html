@@ -58,14 +58,15 @@
             <i class="fas fa-car" aria-hidden="true"></i>
           </div>
           <div class="service-card__content">
-            <h3 class="service-card__title">Basis</h3>
+            <h3 class="service-card__title">1-staps polijst</h3>
             <ul class="service-card__features">
-              <li>Exterieur & interieur reiniging</li>
-              <li>Velgen reiniging</li>
-              <li>Basis wax</li>
+              <li>Verwijdert lichte krasjes en dofheid</li>
+              <li>Herstelt glans en diepte</li>
+              <li>Snelle opfrisbeurt</li>
             </ul>
+            <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
             <button class="btn btn-accent service-card__cta" data-service="basis">
-              Boek basis
+              Boek 1-staps
             </button>
           </div>
         </article>
@@ -76,14 +77,15 @@
             <i class="fas fa-star" aria-hidden="true"></i>
           </div>
           <div class="service-card__content">
-            <h3 class="service-card__title">Geavanceerd</h3>
+            <h3 class="service-card__title">2-staps polijst</h3>
             <ul class="service-card__features">
-              <li>Grondige lakreiniging</li>
-              <li>Interieur dieptereiniging</li>
-              <li>Beschermlaag</li>
+              <li>Correctie van middelzware krassen</li>
+              <li>Verfijning tot hoogglans</li>
+              <li>Pakt zichtbare lakdefecten aan</li>
             </ul>
+            <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
             <button class="btn btn-accent service-card__cta" data-service="geavanceerd">
-              Boek geavanceerd
+              Boek 2-staps
             </button>
           </div>
         </article>
@@ -93,14 +95,15 @@
             <i class="fas fa-shield-alt" aria-hidden="true"></i>
           </div>
           <div class="service-card__content">
-            <h3 class="service-card__title">Ultra Keramisch</h3>
+            <h3 class="service-card__title">3-staps polijst</h3>
             <ul class="service-card__features">
-              <li>Keramische coating</li>
-              <li>Paint protection film</li>
-              <li>2 jaar garantie</li>
+              <li>Grove correctie</li>
+              <li>Medium correctie</li>
+              <li>Fijne afwerking in hoogglans</li>
             </ul>
+            <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
             <button class="btn btn-accent service-card__cta" data-service="ultra">
-              Boek ultra
+              Boek 3-staps
             </button>
           </div>
         </article>
@@ -429,12 +432,6 @@
           <li><a href="diensten.html">Diensten</a></li>
           <li><a href="over-ons.html">Over ons</a></li>
           <li><a href="work.html">Ons werk</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Contact</h4>
-        <ul>
           <li>Bel: <a href="tel:+32484378165">+32 484 37 81 65</a></li>
           <li>Mail: <a href="mailto:info@annemansautomotive.com">info@annemansautomotive.com</a></li>
           <li>Regio: Vlaanderen</li>
@@ -452,6 +449,113 @@
   </div>
 </div>
 
+<!-- Modal for detailed service content -->
+<div id="serviceModal" class="service-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="serviceModalTitle">
+  <div class="service-modal__backdrop" data-modal-close></div>
+  <div class="service-modal__dialog" role="document">
+    <button class="service-modal__close" type="button" aria-label="Sluiten" data-modal-close>
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <div class="service-modal__content" id="serviceModalContent"></div>
+  </div>
+</div>
+
+  <!-- Minimal inline styles for the modal (scoped to this page) -->
+  <style>
+    .service-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .service-modal[aria-hidden="false"] { display: flex; }
+    .service-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(2px); }
+    .service-modal__dialog { position: relative; max-width: 900px; width: min(92vw, 900px); max-height: 84vh; overflow: auto; background: #0b0b0b; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); padding: clamp(16px, 2.5vw, 28px); }
+    .service-modal__close { position: absolute; top: 10px; right: 10px; border: 0; background: transparent; color: #fff; font-size: 20px; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: grid; place-items: center; }
+    .service-modal__close:hover { background: rgba(255,255,255,0.08); }
+    .service-modal__content { color: #f5f5f5; }
+    .service-modal__content .extra-title { margin-top: 0; }
+    .service-modal__content .price-box { background: rgba(255,255,255,0.04); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); }
+  </style>
+
+  <!-- Inline script to open modal instead of expanding cards -->
+  <script>
+    (function() {
+      const modal = document.getElementById('serviceModal');
+      const modalContent = document.getElementById('serviceModalContent');
+      let lastFocused = null;
+
+      function openModal(html) {
+        lastFocused = document.activeElement;
+        modalContent.innerHTML = html;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        // focus first focusable element or close button
+        const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        (focusable || modal.querySelector('.service-modal__close')).focus();
+      }
+
+      function closeModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        modalContent.innerHTML = '';
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      // Close handlers
+      modal.addEventListener('click', function(e) {
+        if (e.target.matches('[data-modal-close]')) {
+          e.preventDefault();
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+          closeModal();
+        }
+      });
+
+      // Intercept clicks on detailed-service-card and open modal
+      const cards = Array.from(document.querySelectorAll('.detailed-service-card'));
+      cards.forEach(card => {
+        // Ensure card can host an overlay trigger without layout shift
+        if (getComputedStyle(card).position === 'static') {
+          card.style.position = 'relative';
+        }
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'card-modal-trigger';
+        trigger.setAttribute('aria-label', 'Bekijk details');
+        // full overlay to capture clicks and prevent underlying expand behavior
+        Object.assign(trigger.style, {
+          position: 'absolute', inset: '0', background: 'transparent', border: '0', padding: '0', margin: '0', cursor: 'pointer', zIndex: '999999'
+        });
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation(); // prevent the existing toggle from firing
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          const extra = card.querySelector('.detailed-service-card__extra');
+          const content = extra ? extra.innerHTML : '<p>Geen extra informatie beschikbaar.</p>';
+          openModal(content);
+        });
+        // Also intercept at capture phase to override existing expand behavior
+        card.addEventListener('click', function(e) {
+          const tag = e.target.tagName.toLowerCase();
+          if (tag === 'a' || tag === 'button' || e.target.closest('a') || e.target.closest('button')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          const extra = card.querySelector('.detailed-service-card__extra');
+          const content = extra ? extra.innerHTML : '<p>Geen extra informatie beschikbaar.</p>';
+          openModal(content);
+        }, true);
+        // Prevent keyboard event bubbling to original listener
+        trigger.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            trigger.click();
+          }
+        });
+      });
+    })();
+  </script>
 <script src="Diensten.js"></script>
 </body>
-</html>
