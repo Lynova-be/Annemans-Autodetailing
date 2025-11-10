@@ -65,9 +65,11 @@
               <li>Snelle opfrisbeurt</li>
             </ul>
             <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€225</span>
             <button class="btn btn-accent service-card__cta" data-service="basis">
               Boek 1-staps
             </button>
+            
           </div>
         </article>
 
@@ -84,6 +86,7 @@
               <li>Pakt zichtbare lakdefecten aan</li>
             </ul>
             <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€275</span>
             <button class="btn btn-accent service-card__cta" data-service="geavanceerd">
               Boek 2-staps
             </button>
@@ -102,9 +105,55 @@
               <li>Fijne afwerking in hoogglans</li>
             </ul>
             <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€325</span>
             <button class="btn btn-accent service-card__cta" data-service="ultra">
               Boek 3-staps
             </button>
+          </div>
+        </article>
+
+        <!-- Full-width package (collapsible) -->
+        <article class="service-card" data-service="full-detail" style="grid-column: 1 / -1;" id="fullDetailCard" aria-expanded="false">
+          <div class="service-card__icon">
+            <i class="fas fa-gem" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Full Detail Pakket – Premium</h3>
+            <p class="service-card__desc">Volledige exterior én interior detailing met premium afwerking.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€600</span>
+            <p class="price-note" id="fullDetailHint" style="margin-top: .25rem;">Klik om het volledige pakket te bekijken</p>
+            <div class="full-detail-extra" id="fullDetailExtra" hidden>
+              <h4 style="margin-top:1rem;">Lakcorrectie – Minimaal 3-staps polijsten</h4>
+              <ul class="service-card__features">
+                <li>Lak wordt in minimaal drie stappen gepolijst voor het best mogelijke resultaat</li>
+                <li>Diepe krassen, swirls en oxidatie worden verwijderd</li>
+                <li>Eindresultaat: maximale glans en een spiegelende, perfect gladde afwerking</li>
+              </ul>
+
+              <h4>Interieur – Dieptereiniging</h4>
+              <ul class="service-card__features">
+                <li>Alle zetels worden grondig gereinigd en geshampoood</li>
+                <li>Plafond, vloermatten, vloer en beenruimtes worden volledig gereinigd</li>
+                <li>Interieur wordt fris en grondig schoongemaakt, tot in de kleinste hoekjes</li>
+              </ul>
+
+              <h4>Bescherming</h4>
+              <ul class="service-card__features">
+                <li>Lak afgewerkt met Ceramic Wax voor langdurige bescherming</li>
+                <li>Alle ramen gecoat voor verbeterde waterafstotendheid en zicht</li>
+              </ul>
+
+              <h4>Samenvatting</h4>
+              <ul class="service-card__features">
+                <li>Volledige exterior en interior detailing</li>
+                <li>Lakcorrectie met minimaal drie stappen</li>
+                <li>Premium afwerking met Ceramic Wax en glascoating</li>
+              </ul>
+
+              <button class="btn btn-accent service-card__cta" data-service="full-detail">
+                Boek Full Detail
+              </button>
+            </div>
           </div>
         </article>
       </div>
@@ -171,7 +220,7 @@
           <div class="detailed-service-card__content">
             <h3>Keramische coating</h3>
             <p>Maximale bescherming en waterafstoting met een diepe glans.</p><br>
-            <p>Vanaf <span class="price mini">€800</span></p>
+            <p>Vanaf <span class="price mini">€650</span></p>
           </div>
 
           <!--Extra content dat zichtbaar wordt als de card openklapt-->
@@ -308,7 +357,6 @@
             <h3>Polijsten – Herstel van Lak & Glans</h3>
             <p>Annemans Automotive biedt twee professionele polijstbehandelingen om de lak van je voertuig te herstellen en de uitstraling te verbeteren.</p><br>
             <span class="price mini">€200</span>
-            <p class="price-note">+€50 voor Stationwagens</p>
           </div>
 
           <!--Extra content dat zichtbaar wordt als de card openklapt-->
@@ -426,6 +474,38 @@
     </div>
   </section>
 </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const card = document.getElementById('fullDetailCard');
+    const extra = document.getElementById('fullDetailExtra');
+    const hint = document.getElementById('fullDetailHint');
+    if (!card || !extra) return;
+
+    const setState = (expanded) => {
+      card.setAttribute('aria-expanded', String(expanded));
+      extra.hidden = !expanded;
+      if (hint) hint.style.display = expanded ? 'none' : 'block';
+    };
+
+    setState(false);
+    card.tabIndex = 0;
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button')) return;
+      const expanded = card.getAttribute('aria-expanded') === 'true';
+      setState(!expanded);
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const expanded = card.getAttribute('aria-expanded') === 'true';
+        setState(!expanded);
+      }
+    });
+  });
+  </script>
 
 <footer class="footer">
   <div class="container">
