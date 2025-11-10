@@ -522,11 +522,19 @@
             <div class="form-group">
               <select class="form-select" name="service" required>
                 <option value="">Selecteer gewenste service</option>
-                <option value="basis">Basis Pakket</option>
-                <option value="geavanceerd">Geavanceerd Pakket</option>
-                <option value="ultra">Ultra Keramisch Pakket</option>
-                <option value="custom">Op Maat Gemaakt</option>
-                <option value="info">Alleen Informatie</option>
+                <option value="1-staps polijst">1-staps polijst</option>
+                <option value="2-staps polijst">2-staps polijst</option>
+                <option value="3-staps polijst">3-staps polijst</option>
+                <option value="Machinaal waxen">Machinaal waxen</option>
+                <option value="Keramische coating">Keramische coating</option>
+                <option value="De Ultieme Auto Verzorging">De Ultieme Auto Verzorging</option>
+                <option value="Premium Hand Wash">Premium Hand Wash</option>
+                <option value="Premium Hand Wash + Interieurreiniging">Premium Hand Wash + Interieurreiniging</option>
+                <option value="Decontaminatie Handwash">Decontaminatie Handwash</option>
+                <option value="Polijsten – Herstel van Lak & Glans">Polijsten – Herstel van Lak & Glans</option>
+                <option value="Motor – Deep Clean">Motor – Deep Clean</option>
+                <option value="Motor – Polijsten">Motor – Polijsten</option>
+                <option value="Alleen informatie">Alleen informatie</option>
               </select>
             </div>
 
@@ -601,17 +609,6 @@
               <p>Reactie binnen 24 uur</p>
             </div>
           </div>
-
-          <div class="contact-method">
-            <div class="contact-method-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div class="contact-method-info">
-              <h4>Service Gebied</h4>
-              <p>Geheel Vlaanderen</p>
-              <p>Mobiele service beschikbaar</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -631,8 +628,9 @@
             <div class="area-icon">
               <i class="fas fa-building"></i>
             </div>
-            <h3 class="area-name">Bedrijfslocaties</h3>
-            <p class="area-description">Service op kantoorparkings, bedrijfsterreinen en andere zakelijke locaties voor fleet management.</p>
+            <h3 class="area-name">Bedrijfslocatie</h3>
+            <p class="area-description">Ternesselei 191</p>
+            <p class="area-description">2160 Wommelgem</p>
           </div>
 
           <div class="area-card">
@@ -854,8 +852,10 @@
           message: data.message || ''
         };
 
-        // Serverless send via Vercel function
-        fetch('/api/send-contact', {
+        // Serverless send via Vercel function (use absolute URL when not on vercel.app)
+        const isVercel = /vercel\.app$/i.test(window.location.hostname);
+        const API_URL = isVercel ? '/api/send-contact' : 'https://annemans-autodetailing.vercel.app/api/send-contact';
+        fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(templateParams)
@@ -865,6 +865,7 @@
               const detail = await r.text().catch(() => '');
               throw new Error(`Server error ${r.status}: ${detail}`);
             }
+            console.log('[Contact] send ok via', API_URL);
             successMessage.classList.add('show');
             form.reset();
             try {
