@@ -3,3 +3,14 @@ node_modules
 .env
 .env.local
 .vercel
+
+# Large archives and temp bundles (avoid pushing huge files)
+*.zip
+*.7z
+*.rar
+nieuwe_content/**/*.zip
+nieuwe_content/**/wetransfer_*.zip
+*.tmp
+*.temp
+
+# Videos are allowed (tracked via Git LFS)

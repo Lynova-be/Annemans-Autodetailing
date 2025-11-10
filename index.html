@@ -1387,51 +1387,62 @@
       
       <div class="pricing-grid">
         <!-- Basic Package -->
-        <div class="pricing-card-wrapper">
-          <div class="pricing-card">
-            <div class="pricing-icon">
-              <i class="fas fa-car"></i>
-            </div>
-            <h3 class="pricing-name">Basic</h3>
-            <ul class="pricing-features">
-              <li>Exterieur & interieur reiniging</li>
-              <li>Velgen reiniging</li>
-              <li>Basis wax</li>
-            </ul>
+        <article class="service-card" data-service="basis">
+          <div class="service-card__icon">
+            <i class="fas fa-car" aria-hidden="true"></i>
           </div>
-        </div>  
+          <div class="service-card__content">
+            <h3 class="service-card__title">1-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Verwijdert lichte krasjes en dofheid</li>
+              <li>Herstelt glans en diepte</li>
+              <li>Snelle opfrisbeurt</li>
+            </ul>
+            <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
+            <button class="btn btn-accent service-card__cta" data-service="basis">
+              Boek 1-staps
+            </button>
+          </div>
+        </article>
 
         <!-- Advanced Package -->
-        <div class="pricing-card-wrapper"> 
-          <div class="pricing-card">
-            <div class="pricing-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3 class="pricing-name">Advanced</h3>
-            <ul class="pricing-features">
-              <li>Grondige lakreiniging</li>
-              <li>Interieur dieptereiniging</li>
-              <li>Beschermlaag</li>
-            </ul>
+        <article class="service-card service-card--featured" data-service="geavanceerd">
+          <div class="service-card__badge">Populair</div>
+          <div class="service-card__icon">
+            <i class="fas fa-star" aria-hidden="true"></i>
           </div>
-        </div>  
+          <div class="service-card__content">
+            <h3 class="service-card__title">2-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Correctie van middelzware krassen</li>
+              <li>Verfijning tot hoogglans</li>
+              <li>Pakt zichtbare lakdefecten aan</li>
+            </ul>
+            <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
+            <button class="btn btn-accent service-card__cta" data-service="geavanceerd">
+              Boek 2-staps
+            </button>
+          </div>
+        </article> 
 
         <!-- Ultra Ceramic Package -->
-        <div class="pricing-card-wrapper"> 
-          <div class="pricing-card featured">
-            <div class="pricing-badge">POPULAIR</div>
-            <div class="pricing-icon">
-              <i class="fas fa-sparkles"></i>
-            </div>
-            <h3 class="pricing-name">Ultra</h3>
-            <h4 style="color: #00A650; margin-bottom: 1.5rem;">Ceramic</h4>
-            <ul class="pricing-features">
-              <li>Keramische coating</li>
-              <li>Paint protection film</li>
-              <li>2 jaar garantie</li>
-            </ul>
+        <article class="service-card" data-service="ultra">
+          <div class="service-card__icon">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
           </div>
-        </div>  
+          <div class="service-card__content">
+            <h3 class="service-card__title">3-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Grove correctie</li>
+              <li>Medium correctie</li>
+              <li>Fijne afwerking in hoogglans</li>
+            </ul>
+            <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
+            <button class="btn btn-accent service-card__cta" data-service="ultra">
+              Boek 3-staps
+            </button>
+          </div>
+        </article>
       </div>
 
       <div class="pricing-cta-container">

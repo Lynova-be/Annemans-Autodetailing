@@ -722,6 +722,10 @@ body::after {
   margin-top: .5rem;
   border-radius: 6px;
 }
+.price.mini {
+  font-size: 2rem;
+  font-weight: bold;
+}
 .price-box .price { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); display:block; margin-bottom:.25rem; }
 .price-note, .combine { font-size: .9rem; color: var(--color-text-muted) }
 
