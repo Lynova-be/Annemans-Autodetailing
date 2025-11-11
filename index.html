@@ -1285,7 +1285,8 @@
   <!-- Hero Section -->
   <section class="hero" id="home">
     <!-- Hero Background Video -->
-    <video class="hero-bg-video" muted playsinline preload="metadata" id="hero-video">
+    <video class="hero-bg-video" autoplay muted playsinline preload="metadata" id="hero-video">
+      <source src="video/hero_background_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
       <source src="video/hero_background.mkv" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
@@ -1344,6 +1345,98 @@
         </div>
         <div class="feature-title">Showroom</div>
         <div class="feature-subtitle">Afwerking</div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Scoped pricing alignment fix */
+    .pricing .pricing-grid { align-items: stretch; }
+    .pricing .service-card { display: flex; flex-direction: column; }
+    .pricing .service-card__content { display: flex; flex-direction: column; flex: 1; }
+    .pricing .service-card__features { min-height: 160px; }
+    .pricing .service-card__desc { min-height: 150px; margin-bottom: 0; }
+    .pricing .service-card__cta { margin-top: auto; width: 100%; }
+
+    @media (max-width: 768px) {
+      .pricing .pricing-grid { grid-template-columns: 1fr !important; gap: 1.25rem; }
+      .pricing .service-card__features { min-height: 110px; }
+      .pricing .service-card__desc { min-height: 100px; }
+    }
+  </style>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-container">
+      <h2 class="pricing-title">Prijzen</h2>
+      
+      <div class="pricing-grid">
+        <!-- Basic Package -->
+        <article class="service-card" data-service="basis">
+          <div class="service-card__icon">
+            <i class="fas fa-car" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">1-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Verwijdert lichte krasjes en dofheid</li>
+              <li>Herstelt glans en diepte</li>
+              <li>Snelle opfrisbeurt</li>
+            </ul>
+            <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€225</span><br>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="basis">
+              Bekijk pakket
+            </a>
+          </div>
+        </article>
+
+        <!-- Advanced Package -->
+        <article class="service-card service-card--featured" data-service="geavanceerd">
+          <div class="service-card__badge">Populair</div>
+          <div class="service-card__icon">
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">2-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Correctie van middelzware krassen</li>
+              <li>Verfijning tot hoogglans</li>
+              <li>Pakt zichtbare lakdefecten aan</li>
+            </ul>
+            <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€275</span>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="geavanceerd">
+              Bekijk pakket
+            </a>
+          </div>
+        </article> 
+
+        <!-- Ultra Ceramic Package -->
+        <article class="service-card" data-service="ultra">
+          <div class="service-card__icon">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">3-staps polijst</h3>
+            <ul class="service-card__features">
+              <li>Grove correctie</li>
+              <li>Medium correctie</li>
+              <li>Fijne afwerking in hoogglans</li>
+            </ul>
+            <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€325</span>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="ultra">
+              Bekijk pakket
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="pricing-cta-container">
+        <button class="pricing-cta" onclick="handleViewPackages()">
+          View packages
+        </button>
       </div>
     </div>
   </section>
@@ -1417,79 +1510,7 @@
     }
   </style>
 
-  <!-- Pricing Section -->
-  <section class="pricing" id="pricing">
-    <div class="pricing-container">
-      <h2 class="pricing-title">Prijzen</h2>
-      
-      <div class="pricing-grid">
-        <!-- Basic Package -->
-        <article class="service-card" data-service="basis">
-          <div class="service-card__icon">
-            <i class="fas fa-car" aria-hidden="true"></i>
-          </div>
-          <div class="service-card__content">
-            <h3 class="service-card__title">1-staps polijst</h3>
-            <ul class="service-card__features">
-              <li>Verwijdert lichte krasjes en dofheid</li>
-              <li>Herstelt glans en diepte</li>
-              <li>Snelle opfrisbeurt</li>
-            </ul>
-            <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
-            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="basis">
-              Bekijk pakket
-            </a>
-          </div>
-        </article>
-
-        <!-- Advanced Package -->
-        <article class="service-card service-card--featured" data-service="geavanceerd">
-          <div class="service-card__badge">Populair</div>
-          <div class="service-card__icon">
-            <i class="fas fa-star" aria-hidden="true"></i>
-          </div>
-          <div class="service-card__content">
-            <h3 class="service-card__title">2-staps polijst</h3>
-            <ul class="service-card__features">
-              <li>Correctie van middelzware krassen</li>
-              <li>Verfijning tot hoogglans</li>
-              <li>Pakt zichtbare lakdefecten aan</li>
-            </ul>
-            <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
-            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="geavanceerd">
-              Bekijk pakket
-            </a>
-          </div>
-        </article> 
-
-        <!-- Ultra Ceramic Package -->
-        <article class="service-card" data-service="ultra">
-          <div class="service-card__icon">
-            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-          </div>
-          <div class="service-card__content">
-            <h3 class="service-card__title">3-staps polijst</h3>
-            <ul class="service-card__features">
-              <li>Grove correctie</li>
-              <li>Medium correctie</li>
-              <li>Fijne afwerking in hoogglans</li>
-            </ul>
-            <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
-            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="ultra">
-              Bekijk pakket
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <div class="pricing-cta-container">
-        <button class="pricing-cta" onclick="handleViewPackages()">
-          View packages
-        </button>
-      </div>
-    </div>
-  </section>
-
+  <br><br><br><br><br><br><br>
   <!-- CTA Section -->
   <section class="cta">
     <div class="cta-container">
@@ -1538,6 +1559,28 @@
       initializeBackgroundEffects();
       initializeScrollAnimations();
       initializeWorkVideosAutoplay();
+
+      // Hero video: freeze on last frame and ensure autoplay without controls
+      const heroVideo = document.getElementById('hero-video');
+      if (heroVideo) {
+        // Remove controls if any were set elsewhere
+        heroVideo.removeAttribute('controls');
+
+        // Try autoplay programmatically as fallback
+        const tryPlay = () => heroVideo.play().catch(() => {});
+        if (heroVideo.paused) {
+          tryPlay();
+        }
+
+        // Freeze on last frame when ended
+        heroVideo.addEventListener('ended', () => {
+          try {
+            heroVideo.pause();
+            const endTime = Math.max(0, heroVideo.duration - 0.05);
+            heroVideo.currentTime = endTime;
+          } catch (e) {}
+        });
+      }
     });
 
     // ========== NAVIGATION ==========
