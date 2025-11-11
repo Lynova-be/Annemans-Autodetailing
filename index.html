@@ -1286,7 +1286,7 @@
   <section class="hero" id="home">
     <!-- Hero Background Video -->
     <video class="hero-bg-video" autoplay muted playsinline webkit-playsinline preload="metadata" id="hero-video">
-      <source src="video/hero_background_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+      <source src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/hero_background_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
       <source src="video/hero_background.mkv" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
@@ -1828,7 +1828,7 @@
   if (!heroVideo) return;
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches || /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
-  const mobileSrc = 'video/hero_background_mobile.mp4';
+  const mobileSrc = 'https://annemans-videos.jeffrey-lodewyck23.workers.dev/hero_background_mobile.mp4';
   const desktopSrc = 'video/hero_background.mkv';
   const desiredSrc = isMobile ? mobileSrc : desktopSrc;
 
