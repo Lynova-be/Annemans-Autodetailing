@@ -1285,7 +1285,7 @@
   <!-- Hero Section -->
   <section class="hero" id="home">
     <!-- Hero Background Video -->
-    <video class="hero-bg-video" autoplay muted playsinline preload="metadata" id="hero-video">
+    <video class="hero-bg-video" autoplay muted playsinline webkit-playsinline preload="metadata" id="hero-video">
       <source src="video/hero_background_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
       <source src="video/hero_background.mkv" type="video/mp4">
     </video>
@@ -1823,31 +1823,29 @@
 
     function initializeMobileVideoSwitching() {
   const heroVideo = document.querySelector('.hero-bg-video');
-  
   if (!heroVideo) return;
-  
-  // Detecteer device type
-  const isMobile = window.innerWidth <= 768;
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const isPortrait = window.innerHeight > window.innerWidth;
-  
-  console.log('📱 Device detection:', { isMobile, isTouchDevice, isPortrait });
-  
-  // Set de juiste video source
-  if (isMobile || isTouchDevice) {
-    console.log('🎬 Loading MOBILE video');
-    heroVideo.innerHTML = `<source src="video/hero_background_mobile.mp4" type="video/mp4">`;
-  } else {
-    console.log('🖥️ Loading DESKTOP video');
-    heroVideo.innerHTML = `<source src="video/hero_background.mkv" type="video/webm">`;
+
+  // Respecteer de <source media> selectie; wijzig sources niet in JS (fix voor Vercel/iOS)
+  const hasMediaSources = heroVideo.querySelector('source[media]');
+  if (hasMediaSources) {
+    try {
+      heroVideo.removeAttribute('controls');
+      heroVideo.autoplay = true;
+      heroVideo.muted = true;
+      heroVideo.playsInline = true;
+      heroVideo.load();
+      heroVideo.play().catch(() => {});
+    } catch (_) {}
+    return;
   }
-  
-  // Reload video met nieuwe source
+
+  // Fallback (indien geen media-<source>): kies op basis van breedte
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  heroVideo.innerHTML = isMobile
+    ? '<source src="video/hero_background_mobile.mp4" type="video/mp4">'
+    : '<source src="video/hero_background.mkv" type="video/mp4">';
   heroVideo.load();
-  
-  // Start video opnieuw
-  heroVideo.autoplay = true;
-  heroVideo.play().catch(e => console.warn('Video autoplay failed:', e));
+  heroVideo.play().catch(() => {});
 }
 
 // ========== RESIZE HANDLER VOOR VIDEO SWITCHING ==========
