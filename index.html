@@ -1558,7 +1558,9 @@
       initializeVideoOptimization();
       initializeBackgroundEffects();
       initializeScrollAnimations();
-      initializeWorkVideosAutoplay();
+      if (typeof initializeWorkVideosAutoplay === 'function') {
+        initializeWorkVideosAutoplay();
+      }
 
       // Hero video: freeze on last frame and ensure autoplay without controls
       const heroVideo = document.getElementById('hero-video');
@@ -1825,27 +1827,38 @@
   const heroVideo = document.querySelector('.hero-bg-video');
   if (!heroVideo) return;
 
-  // Respecteer de <source media> selectie; wijzig sources niet in JS (fix voor Vercel/iOS)
-  const hasMediaSources = heroVideo.querySelector('source[media]');
-  if (hasMediaSources) {
-    try {
-      heroVideo.removeAttribute('controls');
-      heroVideo.autoplay = true;
-      heroVideo.muted = true;
-      heroVideo.playsInline = true;
-      heroVideo.load();
-      heroVideo.play().catch(() => {});
-    } catch (_) {}
-    return;
-  }
+  const isMobile = window.matchMedia('(max-width: 768px)').matches || /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+  const mobileSrc = 'video/hero_background_mobile.mp4';
+  const desktopSrc = 'video/hero_background.mkv';
+  const desiredSrc = isMobile ? mobileSrc : desktopSrc;
 
-  // Fallback (indien geen media-<source>): kies op basis van breedte
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  heroVideo.innerHTML = isMobile
-    ? '<source src="video/hero_background_mobile.mp4" type="video/mp4">'
-    : '<source src="video/hero_background.mkv" type="video/mp4">';
-  heroVideo.load();
-  heroVideo.play().catch(() => {});
+  // Forceer bronselectie i.p.v. vertrouwen op <source media> (fix voor Vercel/Safari)
+  try {
+    heroVideo.removeAttribute('controls');
+    heroVideo.autoplay = true;
+    heroVideo.muted = true;
+    heroVideo.playsInline = true;
+
+    // Alleen wisselen als nodig
+    if (!heroVideo.currentSrc || !heroVideo.currentSrc.includes(desiredSrc)) {
+      heroVideo.pause();
+      heroVideo.src = desiredSrc;
+      heroVideo.load();
+    }
+
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    tryPlay();
+
+    // Fallback: als mobile bron faalt (404/codec), probeer Worker-URL
+    const onError = () => {
+      if (isMobile && !heroVideo.currentSrc.includes('workers.dev')) {
+        heroVideo.src = 'https://annemans-videos.jeffrey-lodewyck23.workers.dev/hero_background_mobile.mp4';
+        heroVideo.load();
+        tryPlay();
+      }
+    };
+    heroVideo.addEventListener('error', onError, { once: true });
+  } catch (_) {}
 }
 
 // ========== RESIZE HANDLER VOOR VIDEO SWITCHING ==========
