@@ -1362,22 +1362,24 @@
       .pricing .pricing-grid { grid-template-columns: 1fr !important; gap: 1.25rem; }
       .pricing .service-card__features { min-height: 110px; }
       .pricing .service-card__desc { min-height: 100px; }
-      /* Our Work - Videos: fully visible (no crop) and sized for mobile */
+      /* Our Work - Videos (mobile): fill card without black bars (iOS-safe) */
       #work-videos .work-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
       #work-videos .work-item, #work-videos .work-item-large {
+        position: relative;
         width: 100%;
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
+        padding-top: 56.25%; /* 16:9 */
+        overflow: hidden;
+        border-radius: 12px;
+        background: #000; /* avoid page background gaps */
       }
       #work-videos .work-item video, #work-videos .work-item-large video {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 220px !important; /* keep compact on mobile */
-        object-fit: contain !important; /* show whole frame inside box */
-        background-color: #000; /* letterboxing when needed */
-        border-radius: 12px !important;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover; /* no black bars */
+        border-radius: 12px;
         display: block;
+        background: transparent;
       }
     }
   </style>
