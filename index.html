@@ -1348,10 +1348,32 @@
     </div>
   </section>
 
+  <!-- Our Work Videos Section -->
+  <section class="our-work" id="work-videos">
+    <div class="our-work-container">
+      <h2 class="our-work-title">Ons werk - Video's</h2>
+      <div class="work-grid">
+        <!-- Left Column - Two Videos -->
+        <div class="work-column-left">
+          <div class="work-item">
+            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+          </div>
+          <div class="work-item">
+            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+          </div>
+        </div>
+        <!-- Right Column - Featured Large Video -->
+        <div class="work-item work-item-large">
+          <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Our Work Section -->
   <section class="our-work" id="work">
     <div class="our-work-container">
-      <h2 class="our-work-title">Ons werk</h2>
+      <h2 class="our-work-title">Ons werk - Foto's</h2>
       
       <div class="work-grid">
         <!-- Left Column - Two Images -->
@@ -1379,6 +1401,21 @@
     </div>
   </section>
 
+  <style>
+    /* Scoped pricing alignment fix */
+    .pricing .pricing-grid { align-items: stretch; }
+    .pricing .service-card { display: flex; flex-direction: column; }
+    .pricing .service-card__content { display: flex; flex-direction: column; flex: 1; }
+    .pricing .service-card__features { min-height: 160px; }
+    .pricing .service-card__desc { min-height: 150px; margin-bottom: 0; }
+    .pricing .service-card__cta { margin-top: auto; width: 100%; }
+
+    @media (max-width: 768px) {
+      .pricing .pricing-grid { grid-template-columns: 1fr !important; gap: 1.25rem; }
+      .pricing .service-card__features { min-height: 110px; }
+      .pricing .service-card__desc { min-height: 100px; }
+    }
+  </style>
 
   <!-- Pricing Section -->
   <section class="pricing" id="pricing">
@@ -1399,9 +1436,9 @@
               <li>Snelle opfrisbeurt</li>
             </ul>
             <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
-            <button class="btn btn-accent service-card__cta" data-service="basis">
-              Boek 1-staps
-            </button>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="basis">
+              Bekijk pakket
+            </a>
           </div>
         </article>
 
@@ -1419,9 +1456,9 @@
               <li>Pakt zichtbare lakdefecten aan</li>
             </ul>
             <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
-            <button class="btn btn-accent service-card__cta" data-service="geavanceerd">
-              Boek 2-staps
-            </button>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="geavanceerd">
+              Bekijk pakket
+            </a>
           </div>
         </article> 
 
@@ -1438,9 +1475,9 @@
               <li>Fijne afwerking in hoogglans</li>
             </ul>
             <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
-            <button class="btn btn-accent service-card__cta" data-service="ultra">
-              Boek 3-staps
-            </button>
+            <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="ultra">
+              Bekijk pakket
+            </a>
           </div>
         </article>
       </div>
@@ -1526,6 +1563,7 @@
       initializeVideoOptimization();
       initializeBackgroundEffects();
       initializeScrollAnimations();
+      initializeWorkVideosAutoplay();
     });
 
     // ========== NAVIGATION ==========
