@@ -979,6 +979,7 @@
     <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
     <div class="lightbox-content" id="lightboxContent">
       <img id="lightboxImg" alt="">
+      <video id="lightboxVideo" controls playsinline style="display:none; max-width:90vw; max-height:80vh; border-radius:12px;"></video>
       <div class="lightbox-info" id="lightboxInfo">
         <span class="photo-category" id="lightboxCategory"></span>
         <h3 class="photo-title" id="lightboxTitle"></h3>
@@ -1114,6 +1115,11 @@
     function closeLightbox() {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+      // Stop and hide video if it was open
+      const v = document.getElementById('lightboxVideo');
+      if (v) { try { v.pause(); } catch(_){} v.src=''; v.style.display='none'; }
+      const img = document.getElementById('lightboxImg');
+      if (img) img.style.display='';
     }
 
     function navigateLightbox(direction) {
@@ -1121,6 +1127,25 @@
       if (newIndex >= 0 && newIndex < filteredPhotos.length) {
         openLightbox(newIndex);
       }
+    }
+
+    // Open a video in the lightbox
+    function openVideoLightbox(src, title = 'Video', category = 'video') {
+      const img = document.getElementById('lightboxImg');
+      const vid = document.getElementById('lightboxVideo');
+      if (!vid) return;
+      // Hide image, show video
+      if (img) img.style.display = 'none';
+      vid.style.display = '';
+      vid.src = src;
+      vid.currentTime = 0;
+      setTimeout(() => { try { vid.play(); } catch(_){} }, 0);
+
+      lightboxCategory.textContent = category;
+      lightboxTitle.textContent = title;
+      lightboxCounter.textContent = '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
     // Event listeners
@@ -1341,33 +1366,28 @@
         });
       });
 
-      // Play button functionality
+      // Open video in lightbox on click (thumbnail or play button)
       videoCards.forEach(card => {
         const playBtn = card.querySelector('.play-button');
         const video = card.querySelector('video');
-        
-        if (playBtn && video) {
-          playBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Create fullscreen video modal or redirect to video
-            console.log('Opening video:', card.dataset.src);
-            
-            // Simple implementation: play video in current element
-            if (video.paused) {
-              video.play();
-              playBtn.style.opacity = '0';
-              
-              // Show play button again when video ends
-              video.addEventListener('ended', () => {
-                playBtn.style.opacity = '1';
-              });
-            } else {
-              video.pause();
-              playBtn.style.opacity = '1';
-            }
-          });
-        }
+        const thumb = card.querySelector('.video-thumbnail');
+        const src = (card.dataset.src && /^https?:\/\//i.test(card.dataset.src))
+          ? card.dataset.src
+          : (video ? video.getAttribute('src') : '');
+        const title = (card.querySelector('.video-title')?.textContent || 'Video').trim();
+
+        const open = (e) => {
+          e?.preventDefault?.();
+          e?.stopPropagation?.();
+          if (src) openVideoLightbox(src, title, 'video');
+        };
+
+        if (playBtn) playBtn.addEventListener('click', open);
+        if (thumb) thumb.addEventListener('click', open);
+        // As fallback, clicking the whole card also opens
+        card.addEventListener('click', (e) => {
+          if (!(e.target instanceof HTMLButtonElement)) open(e);
+        });
       });
     }
 
