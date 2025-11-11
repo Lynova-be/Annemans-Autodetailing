@@ -761,7 +761,7 @@
     </section>
 
     <!-- Interactive Photo Collage Section -->
-    <section class="services-section">
+    <section class="services-section" id="photo-collage">
       <div class="container">
         <div class="section-header">
           <span class="kicker">Fotogalerij</span>
@@ -825,7 +825,7 @@
     </section>
 
     <!-- Video Portfolio Section -->
-    <section class="services-section video-portfolio-section">
+    <section class="services-section video-portfolio-section" id="video-portfolio">
       <!-- Enhanced background gradient -->
       <div class="video-bg-gradient"></div>
       
@@ -956,6 +956,21 @@
             <li>Bel: <a href="tel:+32484378165">+32 484 37 81 65</a></li>
             <li>Mail: <a href="mailto:info@annemansautomotive.com">info@annemansautomotive.com</a></li>
             <li>Regio: Vlaanderen</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Volg ons</h4>
+          <ul>
+            <li>
+              <a href="https://www.instagram.com/annemansautomotive?igsh=MWlmdnVpa3g5cWg4aQ==" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram" aria-hidden="true" style="margin-right:6px;"></i> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/share/15hk3qrfen/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook" aria-hidden="true" style="margin-right:6px;"></i> Facebook
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -1313,6 +1328,12 @@
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
+      // Reorder sections: place video section above photo collage unconditionally
+      const photo = document.getElementById('photo-collage');
+      const video = document.getElementById('video-portfolio');
+      if (photo && video && photo.parentNode) {
+        photo.parentNode.insertBefore(video, photo);
+      }
       replaceWorkMedia();
       initRevealAnimations();
       initVideoFunctionality();
