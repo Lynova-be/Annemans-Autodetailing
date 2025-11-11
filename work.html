@@ -1200,9 +1200,9 @@
       const imgPaths = [...firstSet, ...secondSet];
 
       const videoPaths = [
-        'nieuwe_content/wetransfer_lv_0_20251103071148-mp4_2025-11-10_1808/lv_0_20251103071148.mp4',
-        'nieuwe_content/wetransfer_lv_0_20251103071148-mp4_2025-11-10_1808/lv_0_20251103075800.mp4',
-        'nieuwe_content/wetransfer_lv_0_20251103071148-mp4_2025-11-10_1808/lv_0_20251103163742.mp4'
+        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4',
+        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4',
+        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4'
       ];
 
       // Non-destructive replace: only fill placeholders in existing items
@@ -1250,9 +1250,12 @@
       videoCards.forEach((card, i) => {
         if (i < videoPaths.length) {
           const v = card.querySelector('video');
+          const current = v ? (v.getAttribute('src') || '') : '';
+          const isExternal = /^https?:\/\//i.test(current);
           const src = videoPaths[i];
-          if (v) v.src = src;
-          card.dataset.src = src;
+          // Only set if not already an external (worker) URL
+          if (v && !isExternal) v.src = src;
+          if (!/^https?:\/\//i.test(card.dataset.src || '')) card.dataset.src = src;
         }
       });
       console.log('[Work] collage items now:', document.querySelectorAll('.photo-item').length);
