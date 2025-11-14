@@ -1195,6 +1195,19 @@ body::after {
   .detailed-service-card__content h3 { font-size: 1rem; }
   .detailed-service-card__content p { -webkit-line-clamp: 3; line-clamp: 3; }
   .detailed-services-section .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  /* Ensure checkmarks don't overlap text on mobile pricing/services cards */
+  .service-card__features li {
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    position: relative;
+  }
+  .service-card__features li::before {
+    position: static;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
 }
 
 /* ========== ANIMATIONS ========== */
