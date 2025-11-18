@@ -1480,18 +1480,18 @@
     <div class="our-work-container">
       <h2 class="our-work-title">Ons werk - Video's</h2>
       <div class="work-grid">
-        <!-- Left Column - Two Videos -->
+        <!-- Left Column - Two Videos (no autoplay) -->
         <div class="work-column-left">
           <div class="work-item">
-            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
           </div>
           <div class="work-item">
-            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
           </div>
         </div>
-        <!-- Right Column - Featured Large Video -->
+        <!-- Right Column - Featured Large Video (no autoplay) -->
         <div class="work-item work-item-large">
-          <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4" controls muted playsinline preload="metadata" autoplay loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+          <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
         </div>
       </div>
     </div>
@@ -1593,9 +1593,6 @@
       initializeVideoOptimization();
       initializeBackgroundEffects();
       initializeScrollAnimations();
-      if (typeof initializeWorkVideosAutoplay === 'function') {
-        initializeWorkVideosAutoplay();
-      }
 
       // Hero video: freeze on last frame and ensure autoplay without controls
       const heroVideo = document.getElementById('hero-video');
