@@ -5,12 +5,50 @@ class AnnemansServices {
     this.init();
   }
 
+  // ========== HERO VIDEO AUTOPLAY (INDEX & WORK) ==========
+  setupHeroVideoAutoplay() {
+    const hero = document.querySelector('.hero-bg-video');
+    if (!hero || !(hero instanceof HTMLVideoElement)) return;
+
+    try {
+      // Ensure required attributes for autoplay on modern browsers
+      hero.muted = true;
+      hero.autoplay = true;
+      hero.playsInline = true;
+      hero.setAttribute('playsinline', '');
+      hero.setAttribute('webkit-playsinline', '');
+      hero.removeAttribute('controls');
+    } catch (_) {}
+
+    const tryPlay = () => {
+      try {
+        const p = hero.play();
+        if (p && typeof p.then === 'function') {
+          p.catch(() => {});
+        }
+      } catch (_) {}
+    };
+
+    // Try once shortly after load
+    setTimeout(tryPlay, 50);
+
+    // Retry on first explicit user interaction (for strictere autoplay-regels)
+    const onceHandler = () => {
+      tryPlay();
+      window.removeEventListener('click', onceHandler);
+      window.removeEventListener('touchstart', onceHandler);
+    };
+    window.addEventListener('click', onceHandler, { passive: true });
+    window.addEventListener('touchstart', onceHandler, { passive: true });
+  }
+
   init() {
     this.setupEventListeners();
     this.setupScrollAnimations();
     this.setupMobileNavigation();
     this.setupServiceBooking();
     this.setupToastNotifications();
+    this.setupHeroVideoAutoplay();
   }
 
   // ========== EVENT LISTENERS ==========
