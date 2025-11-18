@@ -1361,33 +1361,12 @@
       const videoCards = document.querySelectorAll('.video-card');
       const videos = document.querySelectorAll('.video-card video');
 
-      // Auto-play videos on hover/viewport intersection
-      const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      }, { threshold: 0.5 });
-
+      // Zorg dat alle portfolio-video's standaard gepauzeerd blijven
       videos.forEach(video => {
-        videoObserver.observe(video);
-        
-        // Play on hover
-        video.parentElement.parentElement.addEventListener('mouseenter', () => {
-          video.play().catch(() => {});
-        });
-        
-        // Pause on leave
-        video.parentElement.parentElement.addEventListener('mouseleave', () => {
-          video.pause();
-        });
+        try { video.pause(); } catch (_) {}
       });
 
-      // Open video in lightbox on click (thumbnail or play button)
+      // Open video in lightbox op klik (thumbnail of play-knop), geen autoplay op hover/viewport
       videoCards.forEach(card => {
         const playBtn = card.querySelector('.play-button');
         const video = card.querySelector('video');
