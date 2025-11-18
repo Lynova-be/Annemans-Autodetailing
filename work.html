@@ -215,22 +215,18 @@
     }
 
     .lightbox img {
-      width: 100%;
-      height: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
       object-fit: contain;
       border-radius: 1rem;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      display: block;
+      margin: 0 auto;
     }
 
     .lightbox-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-      padding: 2rem;
-      border-radius: 0 0 1rem 1rem;
-      color: #ffffff;
+      display: none;
     }
 
     .lightbox-close {
@@ -781,40 +777,40 @@
           <!-- Interactive Collage Grid -->
           <div class="collage-grid" id="collageGrid">
             <div class="photo-item size-large" data-category="premium" data-index="0">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\20250927_184958.jpg" alt="Premium BMW Detailing" loading="lazy">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_184958.jpg" alt="Premium BMW Detailing" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
 
             <div class="photo-item" data-category="exterieur" data-index="1">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\20250927_185046.jpg" alt="Mercedes Velgen Treatment" loading="lazy">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185046.jpg" alt="Mercedes Velgen Treatment" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
 
             <div class="photo-item size-wide" data-category="coating" data-index="2">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\20250927_185147.jpg" alt="Audi Paint Correction" loading="lazy">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185147.jpg" alt="Audi Paint Correction" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
 
             <div class="photo-item" data-category="coating" data-index="3">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\IMG_20250622_131916_591.jpg" alt="Tesla Keramische Coating" loading="lazy">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250622_131916_591.jpg" alt="Tesla Keramische Coating" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
-            <div class="photo-item" data-category="coating" data-index="3">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\IMG_20250928_171042_519.jpg" alt="Tesla Keramische Coating" loading="lazy">
+            <div class="photo-item" data-category="premium" data-index="4">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250830_221929_900.jpg" alt="Luxe Detailing" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
-            <div class="photo-item" data-category="coating" data-index="3">
-              <img src="nieuwe_content\wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824\IMG_20250830_221929_900.jpg" alt="Tesla Keramische Coating" loading="lazy">
+            <div class="photo-item" data-category="luxury" data-index="5">
+              <img src="nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250928_171042_519.jpg" alt="Showroom Finish" loading="lazy">
               <div class="zoom-icon">
                 <i class="fas fa-search-plus"></i>
               </div>
@@ -839,7 +835,7 @@
         <div class="video-grid-container">
           <!-- Featured Video (Large) -->
           <div class="featured-video">
-            <div class="video-card large-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.24 (1).mp4" data-caption="Premium Detailing Process">
+            <div class="video-card large-video" data-video data-src="nieuwe_content/Over_ons_720p.mp4" data-caption="Premium Detailing Process">
               <div class="video-thumbnail">
                 <video src="nieuwe_content/Over_ons_720p.mp4" muted playsinline preload="metadata"></video>
                 <div class="video-overlay">
@@ -866,7 +862,7 @@
 
           <!-- Three smaller videos -->
           <div class="video-grid-small">
-            <div class="video-card small-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.24.mp4" data-caption="Keramische Coating Applicatie">
+            <div class="video-card small-video" data-video data-src="nieuwe_content/Hero_Diensten_720p_V2.mp4" data-caption="Keramische Coating Applicatie">
               <div class="video-thumbnail">
                 <video src="nieuwe_content/Hero_Diensten_720p_V2.mp4" muted playsinline preload="metadata"></video>
                 <div class="video-overlay">
@@ -886,7 +882,7 @@
               </div>
             </div>
 
-            <div class="video-card small-video" data-video data-src="image/WhatsApp Video 2025-08-04 at 18.33.25.mp4" data-caption="Showroom Finish">
+            <div class="video-card small-video" data-video data-src="nieuwe_content/Werk_720p.mp4" data-caption="Showroom Finish">
               <div class="video-thumbnail">
                 <video src="nieuwe_content/Werk_720p.mp4" muted playsinline preload="metadata"></video>
                 <div class="video-overlay">
@@ -1007,18 +1003,18 @@
   <script>
     // Photo data array for easier management
     const photoData = [
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.55.jpeg', title: 'Premium BMW Detailing', category: 'premium' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg', title: 'Mercedes Velgen Treatment', category: 'exterieur' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg', title: 'Audi Paint Correction', category: 'coating' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57 (2).jpeg', title: 'Tesla Keramische Coating', category: 'coating' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.57.jpeg', title: 'Porsche Interior Detail', category: 'interieur' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (1).jpeg', title: 'Lamborghini Premium Care', category: 'premium' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (2).jpeg', title: 'Ferrari Paint Protection', category: 'luxury' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (3).jpeg', title: 'Range Rover Complete Detail', category: 'exterieur' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg', title: 'Bentley Luxury Treatment', category: 'luxury' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58 (5).jpeg', title: 'McLaren Carbon Care', category: 'premium' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.58.jpeg', title: 'Aston Martin Gloss', category: 'exterieur' },
-      { src: 'image/WhatsApp Image 2025-08-04 at 18.38.59.jpeg', title: 'Jaguar F-Type Detail', category: 'premium' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_184958.jpg', title: 'Premium BMW Detailing', category: 'premium' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185046.jpg', title: 'Mercedes Velgen Treatment', category: 'exterieur' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185147.jpg', title: 'Audi Paint Correction', category: 'coating' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250622_131916_591.jpg', title: 'Tesla Keramische Coating', category: 'coating' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250830_221929_900.jpg', title: 'Porsche Interior Detail', category: 'interieur' },
+      { src: 'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250928_171042_519.jpg', title: 'Lamborghini Premium Care', category: 'premium' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250713_101624_229.jpg', title: 'Ferrari Paint Protection', category: 'luxury' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250807_194735_591.jpg', title: 'Range Rover Complete Detail', category: 'exterieur' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250908_191516_303.jpg', title: 'Bentley Luxury Treatment', category: 'luxury' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250925_083104_119.jpg', title: 'McLaren Carbon Care', category: 'premium' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250928_171042_472.jpg', title: 'Aston Martin Gloss', category: 'exterieur' },
+      { src: 'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20251012_201233_482.jpg', title: 'Jaguar F-Type Detail', category: 'premium' },
       { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (1).jpeg', title: 'Maserati Showroom Finish', category: 'luxury' },
       { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (2).jpeg', title: 'Rolls Royce Ultra Care', category: 'luxury' },
       { src: 'image/WhatsApp Image 2025-08-04 at 18.39.00 (3).jpeg', title: 'Bugatti Exclusive Service', category: 'luxury' },
@@ -1217,115 +1213,6 @@
       }
     });
 
-    // Replace media sources with nieuwe_content assets
-    function replaceWorkMedia() {
-      // Keep paths relative and only encode; avoids file:/// absolute resolutions
-      const toWebUrl = (p) => encodeURI(p);
-      const firstSet = [
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_184958.jpg',
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185046.jpg',
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/20250927_185147.jpg',
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250622_131916_591.jpg',
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250830_221929_900.jpg',
-        'nieuwe_content/wetransfer_img_20250622_131916_591-jpg_2025-11-10_1824/IMG_20250928_171042_519.jpg'
-      ];
-      const secondSet = [
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250713_101624_229.jpg',
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250807_194735_591.jpg',
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250908_191516_303.jpg',
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250925_083104_119.jpg',
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20250928_171042_472.jpg',
-        'nieuwe_content/wetransfer_img_20251012_201233_482-jpg_2025-11-10_1813/IMG_20251012_201233_482.jpg'
-      ];
-      const imgPaths = [...firstSet, ...secondSet];
-
-      const videoPaths = [
-        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4',
-        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4',
-        'https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4'
-      ];
-
-      // Non-destructive replace: only fill placeholders in existing items
-      const collageGrid = document.getElementById('collageGrid');
-      const items = Array.from(collageGrid.querySelectorAll('.photo-item'));
-      const imgs = items.map(it => it.querySelector('img')).filter(Boolean);
-
-      // Determine which slots are placeholders (old demo images or empty)
-      const toFillIdx = [];
-      imgs.forEach((img, idx) => {
-        const s = (img.getAttribute('src') || '').trim();
-        if (!s || s.startsWith('image/')) {
-          toFillIdx.push(idx);
-        }
-      });
-
-      let p = 0;
-      // Fill placeholders first
-      toFillIdx.forEach((idx) => {
-        if (p >= imgPaths.length) return;
-        const img = imgs[idx];
-        const src = toWebUrl(imgPaths[p++]);
-        img.src = src;
-        img.loading = 'eager';
-        img.decoding = 'async';
-      });
-
-      // Remove any previously auto-added 'Gallery/Nieuw' blocks
-      Array.from(collageGrid.querySelectorAll('.photo-item')).forEach((el) => {
-        const t = el.querySelector('.photo-title');
-        const c = el.querySelector('.photo-category');
-        if (t && c && t.textContent === 'Gallery' && c.textContent === 'Nieuw') {
-          el.remove();
-        }
-      });
-
-      // regenerate data and bindings including user-edited images (existing items only)
-      const finalImgs = Array.from(collageGrid.querySelectorAll('.photo-item img'))
-        .map(el => el.getAttribute('src'))
-        .filter(Boolean);
-      rebindPhotoGrid(finalImgs);
-
-      // Replace video thumbnails and data-src (non-destructive)
-      const videoCards = Array.from(document.querySelectorAll('.video-card'));
-      videoCards.forEach((card, i) => {
-        if (i < videoPaths.length) {
-          const v = card.querySelector('video');
-          const current = v ? (v.getAttribute('src') || '') : '';
-          const isExternal = /^https?:\/\//i.test(current);
-          const src = videoPaths[i];
-          // Only set if not already an external (worker) URL
-          if (v && !isExternal) v.src = src;
-          if (!/^https?:\/\//i.test(card.dataset.src || '')) card.dataset.src = src;
-        }
-      });
-      console.log('[Work] collage items now:', document.querySelectorAll('.photo-item').length);
-    }
-
-    // Rebind photo grid after rebuilding
-    function rebindPhotoGrid(imgPaths) {
-      try {
-        // overwrite global photoData/filteredPhotos used by lightbox
-        window.photoData = imgPaths.map((src) => ({ src, title: 'Gallery', category: 'alle' }));
-        if (typeof window.filteredPhotos !== 'undefined') {
-          window.filteredPhotos = [...window.photoData];
-        }
-
-        const items = document.querySelectorAll('.photo-item');
-        // attach clicks to open lightbox by index
-        items.forEach((item) => {
-          item.addEventListener('click', () => {
-            const idx = parseInt(item.dataset.index || '0', 10) || 0;
-            if (typeof openLightbox === 'function') openLightbox(idx);
-          });
-        });
-
-        // ensure initial filter shows all
-        if (typeof filterPhotos === 'function') {
-          filterPhotos('alle');
-        }
-      } catch (_) {}
-    }
-
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
       // Reorder sections: place video section above photo collage unconditionally
@@ -1334,7 +1221,6 @@
       if (photo && video && photo.parentNode) {
         photo.parentNode.insertBefore(video, photo);
       }
-      replaceWorkMedia();
       initRevealAnimations();
       initVideoFunctionality();
       

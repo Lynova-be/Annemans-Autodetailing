@@ -1365,6 +1365,82 @@
   </section>
 
   <style>
+    /* Scoped layout tweak: make single photo in 'Ons werk - Foto's' span full width */
+    #work .work-grid {
+      grid-template-columns: 1fr;
+    }
+    #work .work-item {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+    #work .work-column-left,
+    #work .work-column-left .work-item {
+      width: 100%;
+    }
+    #work .work-column-left img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      object-fit: contain;
+      object-position: center center;
+      margin: 0 auto 2.5rem;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* Simple homepage work-photo lightbox */
+    #home-work-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    #home-work-lightbox.active {
+      display: flex;
+    }
+    #home-work-lightbox .home-lightbox-inner {
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+    #home-work-lightbox img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      display: block;
+      margin: 0 auto;
+    }
+    .home-lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      border: none;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .home-lightbox-close:hover {
+      background: rgba(0, 0, 0, 0.9);
+      color: #00A650;
+    }
+
     /* Scoped pricing alignment fix */
     .pricing .pricing-grid { align-items: stretch; }
     .pricing .service-card { display: flex; flex-direction: column; }
@@ -1483,15 +1559,18 @@
         <!-- Left Column - Two Videos (no autoplay) -->
         <div class="work-column-left">
           <div class="work-item">
-            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103163742.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+            <video src="nieuwe_content/Over_ons_720p.mp4" autoplay muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
           </div>
           <div class="work-item">
-            <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103071148.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+            <video src="nieuwe_content/Hero_Diensten_720p_V2.mp4" autoplay muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+          </div>
+          <div class="work-item">
+            <video src="nieuwe_content/Video4_720p.mp4" autoplay muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
           </div>
         </div>
         <!-- Right Column - Featured Large Video (no autoplay) -->
         <div class="work-item work-item-large">
-          <video src="https://annemans-videos.jeffrey-lodewyck23.workers.dev/lv_0_20251103075800.mp4" controls muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
+          <video src="nieuwe_content/Werk_720p.mp4" autoplay muted playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>
         </div>
       </div>
     </div>
@@ -1506,27 +1585,20 @@
         <!-- Left Column - Two Images -->
         <div class="work-column-left">
           <div class="work-item">
-            <a href="image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg">
-              <img src="image/WhatsApp Image 2025-08-04 at 18.38.57 (1).jpeg" alt="">
-            </a>
+            <img src="nieuwe_content/Foto_motor.jpeg" alt="Foto motor" data-home-work-photo onclick="openHomeWorkLightbox('nieuwe_content/Foto_motor.jpeg')">
           </div>
-          
-          <div class="work-item">
-            <a href="image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg">
-              <img src="image/WhatsApp Image 2025-08-04 at 18.38.58 (4).jpeg" alt="">
-            </a>
-          </div>
-        </div>
-        
-        <!-- Right Column - Large Image -->
-        <div class="work-item work-item-large">
-          <a href="image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg">
-            <img src="image/WhatsApp Image 2025-08-04 at 18.38.56.jpeg" alt="">
-          </a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox for homepage work photo -->
+  <div id="home-work-lightbox" aria-hidden="true">
+    <button class="home-lightbox-close" aria-label="Sluit foto">&times;</button>
+    <div class="home-lightbox-inner">
+      <img id="home-work-lightbox-img" src="" alt="Ons werk foto">
+    </div>
+  </div>
 
   <style>
     /* Scoped pricing alignment fix */
@@ -1544,7 +1616,7 @@
     }
   </style>
 
-  <br><br><br><br><br><br><br>
+  <br><br>
   <!-- CTA Section -->
   <section class="cta">
     <div class="cta-container">
@@ -1615,6 +1687,43 @@
           } catch (e) {}
         });
       }
+
+      // Homepage work-photo lightbox (only for #work section)
+      try {
+        const workSection = document.getElementById('work');
+        const lightbox = document.getElementById('home-work-lightbox');
+        const lightboxImg = document.getElementById('home-work-lightbox-img');
+        const closeBtn = lightbox ? lightbox.querySelector('.home-lightbox-close') : null;
+        const workImg = workSection ? workSection.querySelector('img[data-home-work-photo]') : null;
+
+        if (workImg && lightbox && lightboxImg) {
+          const open = (e) => {
+            e.preventDefault();
+            const src = workImg.getAttribute('src');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+          };
+
+          const close = () => {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+          };
+
+          workImg.addEventListener('click', open);
+          if (closeBtn) closeBtn.addEventListener('click', close);
+          lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) close();
+          });
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+              close();
+            }
+          });
+        }
+      } catch (_) {}
     });
 
     // ========== NAVIGATION ==========
@@ -1931,6 +2040,44 @@ function handleVideoResize() {
     handleVideoResize();
   });
 }
+
+    // Global helper for homepage work photo lightbox (used by inline onclick)
+    function openHomeWorkLightbox(src) {
+      try {
+        const lightbox = document.getElementById('home-work-lightbox');
+        const img = document.getElementById('home-work-lightbox-img');
+        const closeBtn = lightbox ? lightbox.querySelector('.home-lightbox-close') : null;
+        if (!lightbox || !img) return;
+
+        img.src = src;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        const close = () => {
+          lightbox.classList.remove('active');
+          lightbox.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        };
+
+        if (closeBtn && !closeBtn.dataset.bound) {
+          closeBtn.addEventListener('click', close);
+          closeBtn.dataset.bound = 'true';
+        }
+        if (!lightbox.dataset.bound) {
+          lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) close();
+          });
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+              close();
+            }
+          });
+          lightbox.dataset.bound = 'true';
+        }
+      } catch (_) {}
+    }
+
   </script>
 
   <footer class="footer">
