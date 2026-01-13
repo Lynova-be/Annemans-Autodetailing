@@ -1195,6 +1195,8 @@ body::after {
   .detailed-service-card__content h3 { font-size: 1rem; }
   .detailed-service-card__content p { -webkit-line-clamp: 3; line-clamp: 3; }
   .detailed-services-section .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  /* Polijsten Velgen kaart centreren (laatste detailed-service-card) */
+
   /* Ensure checkmarks don't overlap text on mobile pricing/services cards */
   .service-card__features li {
     padding-left: 0;
@@ -1208,6 +1210,23 @@ body::after {
     margin-top: 0.2rem;
     flex-shrink: 0;
   }
+}
+/* Polijsten Velgen kaart centreren (alleen velgen-dienst, niet andere kaarten) */
+.detailed-service-card--velgen {
+  display: flex;              /* geen grid meer voor deze kaart */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon in het midden boven de titel */
+.detailed-service-card--velgen .detailed-service-card__icon {
+  margin-bottom: 0.75rem;
+}
+
+/* Content netjes centreren onder het icoon */
+.detailed-service-card--velgen .detailed-service-card__content {
+  text-align: center;
 }
 
 /* ========== ANIMATIONS ========== */

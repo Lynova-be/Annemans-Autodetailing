@@ -719,6 +719,21 @@
       transform: scale(1.05);
     }
 
+    /* Our Work Photos section (homepage) - override layout so photos are side-by-side */
+    #work .work-grid {
+      grid-template-columns: 1fr; /* only one column in this section */
+      height: auto;               /* let height grow with content */
+    }
+
+    #work .work-column-left {
+      flex-direction: row;        /* place items next to each other */
+      justify-content: center;
+    }
+
+    #work .work-item {
+      flex: 1 1 0;
+    }
+
     .work-overlay {
       position: absolute;
       bottom: 0;
@@ -1505,7 +1520,7 @@
               <li>Snelle opfrisbeurt</li>
             </ul>
             <p class="service-card__desc">Een snelle opfrisbeurt waarbij lichte krasjes en dofheid verwijderd worden. Ideaal om de lak weer glans en diepte te geven.</p>
-            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€225</span><br>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€325</span><br>
             <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="basis">
               Bekijk pakket
             </a>
@@ -1526,7 +1541,7 @@
               <li>Pakt zichtbare lakdefecten aan</li>
             </ul>
             <p class="service-card__desc">Eerst corrigeren, daarna verfijnen; middelzware krassen en lakdefecten worden aangepakt, gevolgd door een fijne polijst voor een hoogglans eindresultaat.</p>
-            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€275</span>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€450</span>
             <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="geavanceerd">
               Bekijk pakket
             </a>
@@ -1546,7 +1561,7 @@
               <li>Fijne afwerking in hoogglans</li>
             </ul>
             <p class="service-card__desc">Grove, medium en fijne polijststappen zorgen voor het betere resultaat.</p>
-            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€325</span>
+            <span class="price" style="font-size: 1.5rem; font-weight: bold;">€575</span>
             <a href="diensten.html" class="btn btn-accent service-card__cta" data-service="ultra">
               Bekijk pakket
             </a>
@@ -1593,10 +1608,16 @@
       <h2 class="our-work-title">Ons werk - Foto's</h2>
       
       <div class="work-grid">
-        <!-- Left Column - Two Images -->
+        <!-- Left Column - Three Images -->
         <div class="work-column-left">
           <div class="work-item">
-            <img src="nieuwe_content/Foto_motor.jpeg" alt="Foto motor" data-home-work-photo onclick="openHomeWorkLightbox('nieuwe_content/Foto_motor.jpeg')">
+            <img src="image/Foto_updates_13-1-2026/Home-page-image/1.jpeg" alt="Ons werk foto 1" data-home-work-photo onclick="openHomeWorkLightbox('image/Foto_updates_13-1-2026/Home-page-image/1.jpeg')">
+          </div>
+          <div class="work-item">
+            <img src="image/Foto_updates_13-1-2026/Home-page-image/2.jpeg" alt="Ons werk foto 2" data-home-work-photo onclick="openHomeWorkLightbox('image/Foto_updates_13-1-2026/Home-page-image/2.jpeg')">
+          </div>
+          <div class="work-item">
+            <img src="image/Foto_updates_13-1-2026/Home-page-image/3.jpeg" alt="Ons werk foto 3" data-home-work-photo onclick="openHomeWorkLightbox('image/Foto_updates_13-1-2026/Home-page-image/3.jpeg')">
           </div>
         </div>
       </div>
