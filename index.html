@@ -2421,19 +2421,40 @@
 
           const showFallbackImage = () => {
             try { video.remove(); } catch (_) {}
+            try { img.style.opacity = ''; } catch (_) {}
             try { img.style.display = ''; } catch (_) {}
           };
 
           video.addEventListener('error', showFallbackImage);
 
+          // Overlay video above the image; only fade the image once video is truly playing.
+          try {
+            a.style.position = 'relative';
+          } catch (_) {}
+          try {
+            img.style.position = 'absolute';
+            img.style.inset = '0';
+            img.style.zIndex = '0';
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.2s ease';
+          } catch (_) {}
+          try {
+            video.style.position = 'absolute';
+            video.style.inset = '0';
+            video.style.zIndex = '1';
+          } catch (_) {}
+
           const hideFallbackImage = () => {
-            try { img.style.display = 'none'; } catch (_) {}
+            try { img.style.opacity = '0'; } catch (_) {}
           };
 
-          // iOS/Safari can be picky: don't rely on only one event.
-          video.addEventListener('loadeddata', hideFallbackImage, { once: true });
-          video.addEventListener('canplay', hideFallbackImage, { once: true });
+          // Only hide once we actually start rendering frames.
           video.addEventListener('playing', hideFallbackImage, { once: true });
+          video.addEventListener('timeupdate', () => {
+            try {
+              if (video.currentTime > 0.05) hideFallbackImage();
+            } catch (_) {}
+          }, { once: true });
 
           a.insertBefore(video, img);
 
