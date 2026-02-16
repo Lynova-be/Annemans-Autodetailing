@@ -2321,11 +2321,42 @@
         const items = scope.querySelectorAll('.ig-post[data-ig-mp4], .ig-wide-post[data-ig-mp4]');
         if (!items || items.length === 0) return;
 
+        const isMobile = (() => {
+          try { return window.matchMedia && window.matchMedia('(max-width: 768px)').matches; } catch (_) { return false; }
+        })();
+
+        try {
+          if (!window.__igPreviewAutoplayUnlock) {
+            window.__igPreviewAutoplayUnlock = true;
+            const unlock = () => {
+              try {
+                document.querySelectorAll('video[data-ig-preview]').forEach((v) => {
+                  try {
+                    if (!v.paused) return;
+                    v.play().catch(() => {});
+                  } catch (_) {}
+                });
+              } catch (_) {}
+            };
+            window.addEventListener('touchstart', unlock, { once: true, passive: true });
+            window.addEventListener('click', unlock, { once: true });
+          }
+        } catch (_) {}
+
         const loadVideoFromUrl = (videoEl, url) => {
           try {
             if (!url) return;
             if (videoEl.getAttribute('src')) return;
-            videoEl.setAttribute('src', url);
+            if (videoEl.querySelector && videoEl.querySelector('source')) return;
+            try { videoEl.setAttribute('crossorigin', 'anonymous'); } catch (_) {}
+            try {
+              const s = document.createElement('source');
+              s.setAttribute('src', url);
+              s.setAttribute('type', 'video/mp4');
+              videoEl.appendChild(s);
+            } catch (_) {
+              videoEl.setAttribute('src', url);
+            }
             videoEl.load();
           } catch (_) {
             try { videoEl.dispatchEvent(new Event('error')); } catch (__){ }
@@ -2405,6 +2436,11 @@
           video.addEventListener('playing', hideFallbackImage, { once: true });
 
           a.insertBefore(video, img);
+
+          if (isMobile) {
+            loadVideoFromUrl(video, mp4);
+            video.play().catch(() => {});
+          }
 
           if (observer) {
             observer.observe(a);
