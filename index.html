@@ -2348,6 +2348,7 @@
             if (!url) return;
             if (videoEl.getAttribute('src')) return;
             if (videoEl.querySelector && videoEl.querySelector('source')) return;
+            try { videoEl.setAttribute('preload', 'metadata'); } catch (_) {}
             try { videoEl.setAttribute('crossorigin', 'anonymous'); } catch (_) {}
             try {
               const s = document.createElement('source');
@@ -2379,6 +2380,26 @@
                   if (!v.getAttribute('src') && v.getAttribute('data-src')) {
                     loadVideoFromUrl(v, v.getAttribute('data-src'));
                   }
+
+                  // Mobile Safari often won't autoplay multiple videos simultaneously.
+                  // Ensure only one preview plays at a time.
+                  try {
+                    if (isMobile) {
+                      const container = a.closest('.ig-widget') || scope;
+                      if (container) {
+                        container.querySelectorAll('video[data-ig-preview]').forEach((other) => {
+                          if (other === v) return;
+                          try { other.pause(); } catch (_) {}
+                          try { other.style.opacity = '0'; } catch (_) {}
+                          try {
+                            const otherImg = other.parentElement ? other.parentElement.querySelector('img') : null;
+                            if (otherImg) otherImg.style.opacity = '1';
+                          } catch (_) {}
+                        });
+                      }
+                    }
+                  } catch (_) {}
+
                   v.play().catch(() => {});
                 } else {
                   try { v.pause(); } catch (_) {}
@@ -2414,7 +2435,7 @@
           video.autoplay = true;
           video.setAttribute('loop', '');
           video.loop = true;
-          video.setAttribute('preload', 'metadata');
+          video.setAttribute('preload', 'none');
           video.setAttribute('data-src', mp4);
           video.setAttribute('poster', img.getAttribute('src') || '');
           video.setAttribute('aria-hidden', 'true');
@@ -2442,10 +2463,13 @@
             video.style.position = 'absolute';
             video.style.inset = '0';
             video.style.zIndex = '1';
+            video.style.opacity = '0';
+            video.style.transition = 'opacity 0.2s ease';
           } catch (_) {}
 
           const hideFallbackImage = () => {
             try { img.style.opacity = '0'; } catch (_) {}
+            try { video.style.opacity = '1'; } catch (_) {}
           };
 
           // Only hide once we actually start rendering frames.
@@ -2458,10 +2482,8 @@
 
           a.insertBefore(video, img);
 
-          if (isMobile) {
-            loadVideoFromUrl(video, mp4);
-            video.play().catch(() => {});
-          }
+          // Don't preload MP4s here. We only attach the source once the item is near/in view
+          // (IntersectionObserver), which keeps initial page load fast.
 
           if (observer) {
             observer.observe(a);
