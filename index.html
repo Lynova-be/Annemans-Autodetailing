@@ -2449,6 +2449,33 @@
             try { video.style.opacity = '1'; } catch (_) {}
           };
 
+          const setFirstFrameFallback = (() => {
+            let done = false;
+            return () => {
+              if (done) return;
+              done = true;
+              try {
+                const w = video.videoWidth || 0;
+                const h = video.videoHeight || 0;
+                if (!w || !h) return;
+
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+                ctx.drawImage(video, 0, 0, w, h);
+
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+                if (!dataUrl || dataUrl.length < 32) return;
+                try { img.setAttribute('src', dataUrl); } catch (_) {}
+                try { video.setAttribute('poster', dataUrl); } catch (_) {}
+              } catch (_) {
+                done = false;
+              }
+            };
+          })();
+
           // Only hide once we actually start rendering frames.
           video.addEventListener('playing', hideFallbackImage, { once: true });
           video.addEventListener('timeupdate', () => {
@@ -2467,6 +2494,16 @@
             try { video.play().catch(() => {}); } catch (_) {}
           }, { once: true });
           video.play().catch(() => {});
+
+          // Create a real fallback (first frame) so we never show unrelated imagery.
+          // We seek to a small offset to avoid black first frames on some encodes.
+          video.addEventListener('loadedmetadata', () => {
+            try {
+              const t = Math.min(0.12, Math.max(0, (video.duration || 0) - 0.12));
+              video.currentTime = t;
+            } catch (_) {}
+          }, { once: true });
+          video.addEventListener('seeked', setFirstFrameFallback, { once: true });
 
           if (observer) {
             observer.observe(a);
