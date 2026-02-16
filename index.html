@@ -2374,8 +2374,11 @@
           const video = document.createElement('video');
           video.setAttribute('data-ig-preview', 'true');
           video.setAttribute('muted', '');
+          video.setAttribute('muted', 'muted');
           video.muted = true;
           video.setAttribute('playsinline', '');
+          video.setAttribute('webkit-playsinline', '');
+          try { video.playsInline = true; } catch (_) {}
           video.setAttribute('autoplay', '');
           video.autoplay = true;
           video.setAttribute('loop', '');
@@ -2392,10 +2395,14 @@
 
           video.addEventListener('error', showFallbackImage);
 
-          // Hide img once video is ready to play
-          video.addEventListener('canplay', () => {
+          const hideFallbackImage = () => {
             try { img.style.display = 'none'; } catch (_) {}
-          }, { once: true });
+          };
+
+          // iOS/Safari can be picky: don't rely on only one event.
+          video.addEventListener('loadeddata', hideFallbackImage, { once: true });
+          video.addEventListener('canplay', hideFallbackImage, { once: true });
+          video.addEventListener('playing', hideFallbackImage, { once: true });
 
           a.insertBefore(video, img);
 
