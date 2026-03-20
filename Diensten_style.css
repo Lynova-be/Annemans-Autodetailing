@@ -910,6 +910,21 @@ body::after {
   line-height: 1.6;
 }
 
+.footer-credit {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.footer-credit a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.footer-credit a:hover {
+  color: var(--color-primary);
+}
+
 .footer-section ul {
   list-style: none;
 }
