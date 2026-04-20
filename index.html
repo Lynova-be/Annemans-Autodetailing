@@ -1345,6 +1345,271 @@
     </div>
   </section>
 
+  <style>
+    /* ========== TITAN COATINGS CERTIFIED SECTION ========== */
+    .titan-certified {
+      position: relative;
+      padding: 100px 40px;
+      background: #000;
+      overflow: hidden;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .titan-certified::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00A650, transparent);
+    }
+
+    .titan-certified::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00A650, transparent);
+    }
+
+    .titan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 166, 80, 0.08);
+      border: 1px solid rgba(0, 166, 80, 0.35);
+      color: #00A650;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 64px;
+    }
+
+    .titan-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #00A650;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .titan-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      text-align: left;
+    }
+
+    .titan-cert-wrapper {
+      position: relative;
+    }
+
+    .titan-cert-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0,166,80,0.4), transparent, rgba(0,166,80,0.2));
+      z-index: 0;
+    }
+
+    .titan-cert-img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 0 80px rgba(0, 166, 80, 0.12), 0 30px 70px rgba(0,0,0,0.6);
+    }
+
+    .titan-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .titan-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .titan-title span {
+      color: #00A650;
+    }
+
+    .titan-subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #00A650;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0.8;
+    }
+
+    .titan-desc {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .titan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .titan-features li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+    }
+
+    .titan-features li .titan-check {
+      width: 22px;
+      height: 22px;
+      background: rgba(0,166,80,0.15);
+      border: 1px solid rgba(0,166,80,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .titan-features li .titan-check i {
+      font-size: 0.65rem;
+      color: #00A650;
+    }
+
+    .titan-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .titan-product-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0, 166, 80, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .titan-product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 166, 80, 0.45);
+      box-shadow: 0 24px 50px rgba(0, 166, 80, 0.12);
+    }
+
+    .titan-product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .titan-product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .titan-product-label {
+      padding: 14px 18px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      border-top: 1px solid rgba(0, 166, 80, 0.1);
+    }
+
+    @media (max-width: 900px) {
+      .titan-certified { padding: 70px 24px; }
+      .titan-main { grid-template-columns: 1fr; gap: 48px; }
+      .titan-title { font-size: 1.9rem; }
+      .titan-products { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Titan Coatings Certified Installer Section -->
+  <section class="titan-certified">
+    <div class="titan-badge">
+      <span class="titan-badge-dot"></span>
+      Officieel Gecertificeerd Partner
+    </div>
+
+    <div class="titan-main">
+      <div class="titan-cert-wrapper">
+        <img
+          src="image/Titan-coatings/WhatsApp Image 2026-04-20 at 10.20.43.jpeg"
+          alt="Titan Coatings Certified Installer Certificaat – Annemans Automotive"
+          class="titan-cert-img"
+        >
+      </div>
+
+      <div class="titan-text-block">
+        <div class="titan-subtitle">Titan Coatings</div>
+        <h2 class="titan-title">Certified<br><span>Installer</span></h2>
+        <p class="titan-desc">
+          Annemans Automotive is officieel erkend als Titan Coatings Certified Installer.
+          Dit certificaat bevestigt dat wij voldoen aan alle kwaliteits en applicatiestandaarden
+          voor het professioneel aanbrengen van keramische coating zodat uw wagen de
+          bescherming krijgt die ze verdient.
+        </p>
+        <ul class="titan-features">
+          <li>
+            <span class="titan-check"><i class="fas fa-check"></i></span>
+            Gecertificeerde applicatietechnieken
+          </li>
+          <li>
+            <span class="titan-check"><i class="fas fa-check"></i></span>
+            Gebruik van originele Titan Coatings producten
+          </li>
+          <li>
+            <span class="titan-check"><i class="fas fa-check"></i></span>
+            Maximale lakbescherming gegarandeerd
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titan-products">
+      <div class="titan-product-card">
+        <img src="image/Titan-coatings/WhatsApp Image 2026-04-20 at 10.20.03.jpeg" alt="Titan Coatings Hydro TX145">
+        <div class="titan-product-label">Hydro TX145</div>
+      </div>
+      <div class="titan-product-card">
+        <img src="image/Titan-coatings/WhatsApp Image 2026-04-20 at 10.20.03 (1).jpeg" alt="Titan Coatings Zeus">
+        <div class="titan-product-label">Zeus</div>
+      </div>
+      <div class="titan-product-card">
+        <img src="image/Titan-coatings/WhatsApp Image 2026-04-20 at 10.20.03 (2).jpeg" alt="Titan Coatings Apollo TX130 & Vulcan TX155">
+        <div class="titan-product-label">Apollo TX130 &amp; Vulcan TX155</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Instagram Widget Section -->
   <section class="ig-widget-section" id="instagram">
     <div class="ig-widget-container">
